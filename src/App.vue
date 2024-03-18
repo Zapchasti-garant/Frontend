@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import CarouselPrime from './ui/CarouselPrime.vue'
+import Carousel from './ui/Carousel.vue'
 </script>
 
 <template>
-	<CarouselPrime />
+	<Carousel />
 </template>
 
 <style scoped></style>
