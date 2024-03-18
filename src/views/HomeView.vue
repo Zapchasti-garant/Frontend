@@ -1,7 +1,15 @@
 <template>
-	<div></div>
+	<div class="wrapper">
+		<Carousel />
+	</div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Carousel from '../ui/Carousel.vue'
+</script>
 
-<style scoped></style>
+<style scoped>
+.wrapper {
+	display: flex;
+}
+</style>

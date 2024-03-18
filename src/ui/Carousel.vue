@@ -1,6 +1,5 @@
 <template>
 	<div class="carousel">
-		<h2>привет</h2>
 		<div class="wrapper__carousel">
 			<button @click.prevent="prevImage" class="btn-reset carousel__prev">
 				<SvgIcon type="mdi" :path="iconLeft" class="icon"></SvgIcon>
@@ -58,6 +57,10 @@ const prevImage = () => {
 </script>
 
 <style scoped>
+.header {
+	background-color: aqua;
+	width: 100%;
+}
 .carousel {
 	max-width: 1920px;
 	width: 100%;
