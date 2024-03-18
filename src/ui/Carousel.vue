@@ -62,7 +62,6 @@ const prevImage = () => {
 	width: 100%;
 }
 .carousel {
-	max-width: 1920px;
 	width: 100%;
 	display: flex;
 	align-items: center;
@@ -70,7 +69,7 @@ const prevImage = () => {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
-	background-image: url('/img/back-carousel.jpg');
+	background-image: url('/img/back-carousel.png');
 }
 .wrapper__carousel {
 	position: relative;
