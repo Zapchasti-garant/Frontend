@@ -14,9 +14,7 @@
 
 @mixin tablet {
 	@media (max-width: (1024px)) {
-		.header {
-			font-size: 24;
-		}
+		@content;
 	}
 }
 
