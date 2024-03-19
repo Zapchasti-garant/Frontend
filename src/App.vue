@@ -1,12 +1,48 @@
 <template>
-	<Header />
-	<Navigation />
-	<RouterView />
+  <Header />
+  <Navigation />
+  <main class="main">
+    <router-view v-slot="{ Component }">
+      <transition name="fade" mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
+  </main>
 </template>
 
 <script setup lang="ts">
-import Navigation from './components/Navigation.vue';
-import Header from './components/Header.vue';
+import Header from "@/components/Base/BaseHeader.vue";
+import Navigation from "@/components/Base/BaseNavigation.vue";
+import { Transition } from "vue";
+
+const onBeforeEnter = () => {
+  console.log("Before enter");
+};
+
+const onEnter = () => {
+  console.log("Enter");
+};
+
+const onLeave = () => {
+  console.log("Leave");
+};
+
+const onAfterLeave = () => {
+  console.log("After leave");
+};
 </script>
 
-<style scoped></style>
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+.main {
+  margin: 0 auto;
+}
+</style>
