@@ -14,22 +14,6 @@
 import Header from "@/components/Base/BaseHeader.vue";
 import Navigation from "@/components/Base/BaseNavigation.vue";
 import { Transition } from "vue";
-
-const onBeforeEnter = () => {
-  console.log("Before enter");
-};
-
-const onEnter = () => {
-  console.log("Enter");
-};
-
-const onLeave = () => {
-  console.log("Leave");
-};
-
-const onAfterLeave = () => {
-  console.log("After leave");
-};
 </script>
 
 <style>

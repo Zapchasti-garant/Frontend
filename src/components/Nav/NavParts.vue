@@ -1,6 +1,6 @@
 <template>
   <Background />
-  <div>Компонент запасных запчастей</div>
+  <div class="container">Компонент запасных запчастей</div>
 </template>
 
 <script setup lang="ts">

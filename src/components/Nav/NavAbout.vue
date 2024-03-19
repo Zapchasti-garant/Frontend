@@ -4,7 +4,7 @@
       <Carousel />
     </div>
   </div>
-  <div>Компонент о нас</div>
+  <div class="container">Компонент о нас</div>
 </template>
 
 <script setup lang="ts">
