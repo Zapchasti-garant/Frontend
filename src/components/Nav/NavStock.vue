@@ -1,6 +1,6 @@
 <template>
   <Background />
-  <div>Компонент на складе</div>
+  <div class="container">Компонент на складе</div>
 </template>
 
 <script setup lang="ts">
