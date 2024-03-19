@@ -1,65 +1,63 @@
 <template>
-  <div class="container">
-    <header class="header">
-      <div class="container">
-        <div class="header__wrapper">
-          <a class="header__logo" href="#"
-            ><img class="header__img" :src="logoIcon" alt="logo"
-          /></a>
-          <nav class="header__nav">
-            <ul class="header__items">
-              <li class="header__item">
-                <MailIcon />
-                <a href="mailto:1234353534@uandex.ru" class="header__link"
-                  >1234353534@uandex.ru</a
-                >
-              </li>
-              <li class="header__item">
-                <PhoneIcon />
-                <a href="tel:+79990000000" class="header__link">+79990000000</a>
-              </li>
-              <li class="header__item">
-                <PhoneIcon />
-                <a href="tel:+79990000000" class="header__link">+79990000000</a>
-              </li>
-            </ul>
-            <form class="form" action="">
-              <input
-                type="search"
-                placeholder="Найти товар"
-                class="header__search"
-                name="search"
-              />
-              <button class="header__btn">
-                <svg
-                  width="70px"
-                  height="20px"
-                  viewBox="0 0 180 60"
-                  class="border"
-                >
-                  <polyline
-                    points="179,1 179,59 1,59 1,1 179,1"
-                    class="bg-line"
-                  />
-                  <polyline
-                    points="179,1 179,59 1,59 1,1 179,1"
-                    class="hl-line"
-                  />
-                </svg>
-                <span>Искать</span>
-              </button>
-            </form>
-          </nav>
-        </div>
+  <header class="header">
+    <div class="container">
+      <div class="header__wrapper">
+        <router-link class="header__logo" to="/"
+          ><img class="header__img" :src="logoIcon" alt="logo"
+        /></router-link>
+        <nav class="header__nav">
+          <ul class="header__items">
+            <li class="header__item">
+              <MailIcon />
+              <a href="mailto:1234353534@uandex.ru" class="header__link"
+                >1234353534@uandex.ru</a
+              >
+            </li>
+            <li class="header__item">
+              <PhoneIcon />
+              <a href="tel:+79990000000" class="header__link">+79990000000</a>
+            </li>
+            <li class="header__item">
+              <PhoneIcon />
+              <a href="tel:+79990000000" class="header__link">+79990000000</a>
+            </li>
+          </ul>
+          <form class="form" action="">
+            <input
+              type="search"
+              placeholder="Найти товар"
+              class="header__search"
+              name="search"
+            />
+            <button class="header__btn">
+              <svg
+                width="70px"
+                height="20px"
+                viewBox="0 0 180 60"
+                class="border"
+              >
+                <polyline
+                  points="179,1 179,59 1,59 1,1 179,1"
+                  class="bg-line"
+                />
+                <polyline
+                  points="179,1 179,59 1,59 1,1 179,1"
+                  class="hl-line"
+                />
+              </svg>
+              <span>Искать</span>
+            </button>
+          </form>
+        </nav>
       </div>
-    </header>
-  </div>
+    </div>
+  </header>
 </template>
 
 <script setup lang="ts">
-import MailIcon from "../ui/MailIcon.vue";
-import PhoneIcon from "../ui/PhoneIcon.vue";
 import { ref } from "vue";
+import MailIcon from "@/ui/Icon/MailIcon.vue";
+import PhoneIcon from "@/ui/Icon/PhoneIcon.vue";
 const logoIcon = ref("/img/logo.svg");
 </script>
 
@@ -117,7 +115,6 @@ const logoIcon = ref("/img/logo.svg");
 }
 
 .header__img {
-  padding-top: 20px;
   width: 250px;
   height: 110px;
 }
@@ -188,6 +185,7 @@ const logoIcon = ref("/img/logo.svg");
 }
 
 .header {
-  padding-bottom: 80px;
+  padding-bottom: 20px;
 }
 </style>
+../ui/Icon/MailIcon.vue../ui/Icon/PhoneIcon.vue

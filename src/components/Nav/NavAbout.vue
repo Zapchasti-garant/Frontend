@@ -4,10 +4,11 @@
       <Carousel />
     </div>
   </div>
+  <div>Компонент о нас</div>
 </template>
 
 <script setup lang="ts">
-import Carousel from "../ui/Carousel.vue";
+import Carousel from "@/ui/Carousel.vue";
 </script>
 
 <style scoped>
