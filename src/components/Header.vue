@@ -4,7 +4,7 @@
       <div class="container">
         <div class="header__wrapper">
           <a class="header__logo" href="#"
-            ><img class="header__img" src="/img/logo.svg" alt="logo"
+            ><img class="header__img" :src="logoIcon" alt="logo"
           /></a>
           <nav class="header__nav">
             <ul class="header__items">
@@ -59,6 +59,8 @@
 <script setup lang="ts">
 import MailIcon from "../ui/MailIcon.vue";
 import PhoneIcon from "../ui/PhoneIcon.vue";
+import { ref } from "vue";
+const logoIcon = ref("/img/logo.svg");
 </script>
 
 <style scoped>
