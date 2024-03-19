@@ -1,5 +1,5 @@
 export const images: string[] = [
-	'/img/carousel-1.jpg',
-	'/img/carousel-2.jpg',
-	'/img/carousel-3.jpg',
+	'/img/img1.png',
+	'/img/img2.png',
+	'/img/img3.png',
 ]
