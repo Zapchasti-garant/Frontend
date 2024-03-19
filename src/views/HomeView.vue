@@ -1,15 +1,22 @@
 <template>
-	<div class="wrapper">
-		<Carousel />
-	</div>
+  <div class="carousel__wrapper">
+    <div class="container">
+      <Carousel />
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import Carousel from '../ui/Carousel.vue'
+import Carousel from "../ui/Carousel.vue";
 </script>
 
 <style scoped>
-.wrapper {
-	display: flex;
+.carousel__wrapper {
+  width: 100%;
+  background-color: aqua;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("/img/back-carousel.png");
 }
 </style>

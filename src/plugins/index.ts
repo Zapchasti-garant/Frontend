@@ -1,11 +1,9 @@
-import PrimeVue from 'primevue/config'
-import router from '../router'
-import pinia from '../store'
+import router from "../router";
+import pinia from "../store";
+import vuetify from "./vuetify";
 // Types
-import type { App } from 'vue'
+import type { App } from "vue";
 
 export function registerPlugins(app: App) {
-	app.use(pinia).use(router).use(PrimeVue, {
-		unstyled: true,
-	})
+  app.use(pinia).use(router).use(vuetify);
 }

@@ -1,49 +1,49 @@
 <template>
-<div class="Navigation">
-<div class="container">
-	<aside>
-		<nav class="Navigation__nav">
-			<ul class="list-reset Navigation__items">
-			<li class="Navigation__item">
-				<router-link to="/" class="Navigation__link">
-					О компании
-				</router-link>
-			</li>
-			<li class="Navigation__item">
-				<router-link to="/" class="Navigation__link">
-					Новости
-				</router-link>
-			</li>
-			<li class="NavigationHeader__item">
-				<router-link to="/" class="Navigation__link">
-					Спецпредложения
-				</router-link>
-			</li>
-			<li class="Navigation__item">
-				<router-link to="/" class="Navigation__link">
-					На складе
-				</router-link>
-			</li>
-			<li class="Navigation__item">
-				<router-link to="/" class="Navigation__link">
-					Контакты
-				</router-link>
-			</li>
-			<li class="Navigation__item">
-				<router-link to="/" class="Navigation__link">
-					Запасные части
-				</router-link>
-			</li>
-			<li class="Navigation__item">
-				<router-link to="/" class="Navigation__link">
-					Дилерство
-				</router-link>
-			</li>
-		</ul>
-		</nav>
-	</aside>
-</div>
-</div>
+	<div class="Navigation">
+		<div class="container">
+			<aside>
+				<nav class="Navigation__nav">
+					<ul class="list-reset Navigation__items">
+						<li class="navigation__item">
+							<router-link to="/" class="Navigation__link">
+								О компании
+							</router-link>
+						</li>
+						<li class="navigation__item">
+							<router-link to="/" class="Navigation__link">
+								Новости
+							</router-link>
+						</li>
+						<li class="navigation__item">
+							<router-link to="/" class="Navigation__link">
+								Спецпредложения
+							</router-link>
+						</li>
+						<li class="navigation__item">
+							<router-link to="/" class="Navigation__link">
+								На складе
+							</router-link>
+						</li>
+						<li class="navigation__item">
+							<router-link to="/" class="Navigation__link">
+								Контакты
+							</router-link>
+						</li>
+						<li class="navigation__item">
+							<router-link to="/" class="Navigation__link">
+								Запасные части
+							</router-link>
+						</li>
+						<li class="navigation__item">
+							<router-link to="/" class="Navigation__link">
+								Дилерство
+							</router-link>
+						</li>
+					</ul>
+				</nav>
+			</aside>
+		</div>
+	</div>
 </template>
 
 <script setup lang="ts"></script>
