@@ -14,6 +14,7 @@
 import Header from "@/components/Base/BaseHeader.vue";
 import Navigation from "@/components/Base/BaseNavigation.vue";
 import { Transition } from "vue";
+import BaseLeftPanel from "./components/Base/BaseLeftPanel.vue";
 </script>
 
 <style>
