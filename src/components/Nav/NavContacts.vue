@@ -1,10 +1,7 @@
 <template>
-  <Background />
   <div class="container">Компонент контактов</div>
 </template>
 
-<script setup lang="ts">
-import Background from "@/ui/Background.vue";
-</script>
+<script setup lang="ts"></script>
 
 <style scoped></style>

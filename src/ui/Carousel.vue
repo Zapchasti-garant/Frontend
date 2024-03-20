@@ -1,7 +1,15 @@
 <template>
-  <v-carousel show-arrows="hover" hide-delimiters cycle interval="5000">
-    <v-carousel-item v-for="item in images" :src="item" cover></v-carousel-item>
-  </v-carousel>
+  <div class="carousel__wrapper">
+    <div class="container">
+      <v-carousel show-arrows="hover" hide-delimiters cycle interval="5000">
+        <v-carousel-item
+          v-for="item in images"
+          :src="item"
+          cover
+        ></v-carousel-item>
+      </v-carousel>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -9,4 +17,13 @@
 import { images } from "../helpers/pathToImg";
 </script>
 
-<style scoped></style>
+<style scoped>
+.carousel__wrapper {
+  width: 100%;
+  background-color: aqua;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("/img/back-carousel.png");
+}
+</style>
