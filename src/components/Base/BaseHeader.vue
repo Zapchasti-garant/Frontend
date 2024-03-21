@@ -5,69 +5,51 @@
         <router-link class="header__logo" to="/"
           ><img class="header__img" :src="logoIcon" alt="logo"
         /></router-link>
-        <nav class="header__nav">
-          <ul class="header__items">
-            <li class="header__item">
-              <MailIcon />
-              <a href="mailto:1234353534@uandex.ru" class="header__link"
-                >1234353534@uandex.ru</a
-              >
-            </li>
-            <li class="header__item">
-              <PhoneIcon />
-              <a href="tel:+79990000000" class="header__link">+79990000000</a>
-            </li>
-            <li class="header__item">
-              <PhoneIcon />
-              <a href="tel:+79990000000" class="header__link">+79990000000</a>
-            </li>
-          </ul>
-          <form class="form" action="">
-            <input
-              type="search"
-              placeholder="Найти товар"
-              class="header__search"
-              name="search"
-            />
-            <button class="header__btn">
-              <svg
-                width="70px"
-                height="20px"
-                viewBox="0 0 180 60"
-                class="border"
-              >
-                <polyline
-                  points="179,1 179,59 1,59 1,1 179,1"
-                  class="bg-line"
-                />
-                <polyline
-                  points="179,1 179,59 1,59 1,1 179,1"
-                  class="hl-line"
-                />
-              </svg>
-              <span>Искать</span>
+
+        <div class="header__wrapper-contacts">
+          <nav class="header__nav">
+            <ul class="header__items">
+              <li class="header__item">
+                <MailIcon />
+                <a href="mailto:1234353534@uandex.ru" class="header__link"
+                  >1234353534@uandex.ru</a
+                >
+              </li>
+              <li class="header__item">
+                <PhoneIcon />
+                <a href="tel:+79990000000" class="header__link">+79990000000</a>
+              </li>
+              <li class="header__item">
+                <PhoneIcon />
+                <a href="tel:+79990000000" class="header__link">+79990000000</a>
+              </li>
+            </ul>
+          </nav>
+          <form class="header__form">
+            <input type="text" class="header__form-input" />
+            <button class="header__form-btn" type="submit" tabindex="0">
+              Поиск
             </button>
           </form>
-        </nav>
+        </div>
       </div>
     </div>
   </header>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
 import MailIcon from "@/ui/Icon/MailIcon.vue";
 import PhoneIcon from "@/ui/Icon/PhoneIcon.vue";
+import { ref } from "vue";
 const logoIcon = ref("/img/logo.svg");
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .header__item {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-
 .header__item svg {
   width: 20px;
   height: 20px;
@@ -77,12 +59,6 @@ const logoIcon = ref("/img/logo.svg");
   width: 20px;
   height: 15px;
   padding-right: 4px;
-}
-
-.header__nav {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
 }
 
 .header__wrapper {
@@ -129,17 +105,69 @@ const logoIcon = ref("/img/logo.svg");
   font-family: "Montserrat";
 }
 
-.form {
-  gap: 10px;
-  display: flex;
-  align-items: center;
-}
+.header {
+  &__form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    align-items: stretch;
+  }
+  &__form-input {
+    background: #d4d5d5;
+    border-radius: 5px;
+    border: none;
+    color: black;
+    font-size: 24px;
+    font-weight: 700;
+    outline: 1px solid transparent;
+    font-family: "Montserrat";
+    padding: 10px 0 10px 10px;
+    width: 100%;
+    transition: outline 0.3s ease-in-out;
+    &:focus {
+      outline: 1px solid #01304d;
+    }
+  }
 
+  &__form-btn {
+    background: #d4d5d5;
+    padding: 10px 30px;
+    color: black;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: "Montserrat";
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
+
+    &:focus-visible {
+      outline: none;
+      background: rgb(9, 66, 0);
+      color: #fff;
+    }
+    &:hover {
+      background: #01558a;
+      color: #fff;
+    }
+    &:active {
+      background: #01304d;
+      color: #fff;
+    }
+  }
+}
 .form ::placeholder {
   color: #023859;
   opacity: 0.7;
 }
-
+.custom__form-input {
+  width: 100%;
+  background: #d4d5d5;
+  border-radius: 5px;
+  border: none;
+  color: black;
+}
 .header__btn {
   position: relative;
   width: 60px;
@@ -183,9 +211,10 @@ const logoIcon = ref("/img/logo.svg");
   font-size: 13px;
   font-weight: 100;
 }
-
+.v-field__input {
+  color: #023859;
+}
 .header {
   padding-bottom: 20px;
 }
 </style>
-../ui/Icon/MailIcon.vue../ui/Icon/PhoneIcon.vue

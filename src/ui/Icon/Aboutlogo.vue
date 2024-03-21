@@ -1,9 +1,9 @@
 <template>
-<img src="/img/about.png" alt="" class="aboutlogo">
+  <img :src="logoIcon" alt="" class="aboutlogo" />
 </template>
 
 <script setup lang="ts">
-
+const logoIcon = "/img/about.png";
 </script>
 
 <style scoped>
