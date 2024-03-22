@@ -6,7 +6,7 @@
   <main class="main">
     <div class="container">
       <div class="main__wrapper">
-        <BaseLeftPanel />
+        <BaseLeftPanel class="main__left" />
         <div>
           <router-view v-slot="{ Component }">
             <transition name="fade" mode="out-in">
@@ -44,7 +44,7 @@ watch(
 );
 </script>
 
-<style>
+<style lang="scss">
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;
