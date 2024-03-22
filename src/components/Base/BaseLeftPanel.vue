@@ -9,7 +9,7 @@
         :value="item"
         color="primary"
         rounded="l"
-        :class="'PanelLeft__item'"
+        class="PanelLeft__item"
       >
         <template v-slot:prepend>
           <v-icon :icon="item.icon"></v-icon>
@@ -26,6 +26,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+
 const items = ref([
   { text: "НА СКЛАДЕ", icon: "mdi-tools " },
   { text: "ЗАПЧАСТИ К ТЕПЛОВИЗОРАМ", icon: "mdi-wrench-outline " },
@@ -65,5 +66,8 @@ const items = ref([
 .v-list-item-title {
   font-size: 16px;
   font-weight: 600;
+}
+.isActive {
+  color: aqua;
 }
 </style>

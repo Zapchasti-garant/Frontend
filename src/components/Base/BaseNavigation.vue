@@ -4,46 +4,42 @@
       <aside>
         <nav class="navigation__nav">
           <ul class="list-reset navigation__list">
-            <router-link :to="{ name: 'home' }" class="navigation__link">
-              <li
-                class="navigation__item"
-                :class="{ isActive: route.path === '/' }"
-              >
-                О компании
-              </li>
+            <router-link
+              :to="{ name: 'home' }"
+              class="navigation__link"
+              :class="{ isActive: route.path === '/' }"
+              tabindex="0"
+            >
+              <li class="navigation__item" tabindex="-1">О компании</li>
             </router-link>
-            <li
-              class="navigation__item"
+            <router-link
+              :to="{ name: 'news' }"
+              class="navigation__link"
               :class="{ isActive: route.path === '/news' }"
             >
-              <router-link :to="{ name: 'news' }" class="navigation__link">
-                Запчасти
-              </router-link>
-            </li>
-            <li
-              class="navigation__item"
+              <li class="navigation__item">Запчасти</li>
+            </router-link>
+            <router-link
+              :to="{ name: 'offers' }"
+              class="navigation__link"
               :class="{ isActive: route.path === '/offers' }"
             >
-              <router-link :to="{ name: 'offers' }" class="navigation__link">
-                На складе
-              </router-link>
-            </li>
-            <li
-              class="navigation__item"
+              <li class="navigation__item">На складе</li>
+            </router-link>
+            <router-link
+              to="/contacts"
+              class="navigation__link"
               :class="{ isActive: route.path === '/contacts' }"
             >
-              <router-link to="/contacts" class="navigation__link">
-                Контакты
-              </router-link>
-            </li>
-            <li
-              class="navigation__item"
+              <li class="navigation__item">Контакты</li>
+            </router-link>
+            <router-link
+              to="/dillers"
+              class="navigation__link"
               :class="{ isActive: route.path === '/dillers' }"
             >
-              <router-link to="/dillers" class="navigation__link">
-                Дилерство
-              </router-link>
-            </li>
+              <li class="navigation__item">Дилерство</li></router-link
+            >
           </ul>
         </nav>
       </aside>
@@ -85,6 +81,18 @@ const route = useRoute();
     color: aliceblue;
     transition: color 0.3s ease-in-out;
 
+    &::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 16px;
+      width: calc(100% - 40px);
+      height: 2px;
+      background-color: #afafaf;
+      transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+      transform: translateX(-50%) scale(0);
+    }
+
     &:focus-visible {
       outline: none;
       color: #ca0000;
@@ -94,19 +102,7 @@ const route = useRoute();
     }
 
     &:hover::after {
-      transform: scale(1);
-    }
-    &::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -5px;
-      width: 100%;
-      height: 2px;
-      background-color: #afafaf;
-      transition: background-color 0.3s ease-in-out;
-      transform: scale(0);
-      transition: transform 0.3s ease-in-out;
+      transform: translateX(-50%) scale(1);
     }
   }
 }
@@ -116,10 +112,10 @@ const route = useRoute();
   position: relative;
   transition: all 0.3s ease-in-out;
 
-  :hover::after {
-    transform: scale(0);
+  &:hover::after {
+    transform: translateX(0) scale(0);
   }
-  &::after {
+  &::before {
     content: "";
     position: absolute;
     bottom: 0;

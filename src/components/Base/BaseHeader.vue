@@ -52,8 +52,6 @@ const logoIcon = ref("/img/logo.svg");
 </script>
 
 <style scoped lang="scss">
-.header__item {
-}
 .header__item svg {
   width: 20px;
   height: 20px;
