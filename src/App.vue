@@ -6,7 +6,7 @@
   <main class="main">
     <div class="container">
       <div class="main__wrapper">
-        <BaseLeftPanel />
+       <BaseLeftPanel />
         <div>
           <router-view v-slot="{ Component }">
             <transition name="fade" mode="out-in">
@@ -17,6 +17,7 @@
       </div>
     </div>
   </main>
+  <BaseFooter />
 </template>
 
 <script setup lang="ts">
@@ -27,6 +28,7 @@ import { Transition, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import Background from "./ui/Background.vue";
 import Carousel from "./ui/Carousel.vue";
+import BaseFooter from "./components/Base/BaseFooter.vue";
 
 const showCarousel = ref(true);
 const route = useRoute();
@@ -59,4 +61,5 @@ watch(
 .main__wrapper {
   display: flex;
 }
+
 </style>
