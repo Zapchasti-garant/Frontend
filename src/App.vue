@@ -17,6 +17,7 @@
       </div>
     </div>
   </main>
+  <BaseFooter />
 </template>
 
 <script setup lang="ts">
@@ -25,6 +26,7 @@ import BaseLeftPanel from "@/components/Base/BaseLeftPanel.vue";
 import Navigation from "@/components/Base/BaseNavigation.vue";
 import { Transition, ref, watch } from "vue";
 import { useRoute } from "vue-router";
+import BaseFooter from "./components/Base/BaseFooter.vue";
 import Background from "./ui/Background.vue";
 import Carousel from "./ui/Carousel.vue";
 
@@ -57,6 +59,8 @@ watch(
   padding-top: 25px;
 }
 .main__wrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  gap: 15px;
 }
 </style>

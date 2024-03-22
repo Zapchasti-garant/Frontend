@@ -2,72 +2,58 @@
   <header class="header">
     <div class="container">
       <div class="header__wrapper">
-        <router-link class="header__logo" to="/"
-          ><img class="header__img" :src="logoIcon" alt="logo"
-        /></router-link>
-        <nav class="header__nav">
-          <ul class="header__items">
-            <li class="header__item">
-              <MailIcon />
-              <a href="mailto:1234353534@uandex.ru" class="header__link"
-                >1234353534@uandex.ru</a
-              >
-            </li>
-            <li class="header__item">
-              <PhoneIcon />
-              <a href="tel:+79990000000" class="header__link">+79990000000</a>
-            </li>
-            <li class="header__item">
-              <PhoneIcon />
-              <a href="tel:+79990000000" class="header__link">+79990000000</a>
-            </li>
-          </ul>
-          <form class="form" action="">
-            <input
-              type="search"
-              placeholder="Найти товар"
-              class="header__search"
-              name="search"
-            />
-            <button class="header__btn">
-              <svg
-                width="70px"
-                height="20px"
-                viewBox="0 0 180 60"
-                class="border"
-              >
-                <polyline
-                  points="179,1 179,59 1,59 1,1 179,1"
-                  class="bg-line"
-                />
-                <polyline
-                  points="179,1 179,59 1,59 1,1 179,1"
-                  class="hl-line"
-                />
-              </svg>
-              <span>Искать</span>
+        <router-link class="header__logo" to="/" tabindex="0"
+          ><img
+            class="header__img"
+            :src="logoIcon"
+            alt="Логотип"
+            tabindex="-1"
+          />
+          <span tabindex="-1">"Промжелснаб"</span></router-link
+        >
+        <div class="header__wrapper-contacts">
+          <nav class="header__nav">
+            <ul class="header__list list-reset">
+              <li class="header__item">
+                <a href="mailto:1234353534@uandex.ru" class="header__link">
+                  <MailIcon /> example@yandex.ru</a
+                >
+                <img src="" alt="" />
+              </li>
+              <li class="header__item">
+                <a href="tel:+79529632724" class="header__link"
+                  ><PhoneIcon /> +7-952-963-27-24</a
+                >
+              </li>
+              <li class="header__item">
+                <a href="tel:+79586461377" class="header__link"
+                  ><PhoneIcon /> +7-958-646-13-77</a
+                >
+              </li>
+            </ul>
+          </nav>
+          <form class="header__form">
+            <input type="text" class="header__form-input" />
+            <button class="header__form-btn" type="submit" tabindex="0">
+              Поиск
             </button>
           </form>
-        </nav>
+        </div>
       </div>
     </div>
   </header>
 </template>
 
 <script setup lang="ts">
+import MailIcon from "@/ui/Icon/IconMail.vue";
+import PhoneIcon from "@/ui/Icon/IconPhone.vue";
 import { ref } from "vue";
-import MailIcon from "@/ui/Icon/MailIcon.vue";
-import PhoneIcon from "@/ui/Icon/PhoneIcon.vue";
 const logoIcon = ref("/img/logo.svg");
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .header__item {
-  display: flex;
-  align-items: center;
-  gap: 5px;
 }
-
 .header__item svg {
   width: 20px;
   height: 20px;
@@ -79,12 +65,6 @@ const logoIcon = ref("/img/logo.svg");
   padding-right: 4px;
 }
 
-.header__nav {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
 .header__wrapper {
   padding-top: 20px;
   display: flex;
@@ -92,26 +72,48 @@ const logoIcon = ref("/img/logo.svg");
 }
 
 .header__link {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 5px;
   font-size: 20px;
-  font-family: "Montserrat";
+  font-weight: 600;
   color: #023859;
   text-decoration: none;
-  transition: color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    transform: scale(0);
+    border-radius: 50%;
+    background: #023859;
+    transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+
+  &:focus-visible {
+    outline: none;
+    color: #ca0000;
+  }
+  &:hover:not(:focus-visible):after {
+    transform: scale(1);
+  }
+  &:hover:not(:focus-visible) {
+    color: #021b2b;
+    transition: color 0.3 ease-in-out;
+  }
+  &:active:not(:focus-visible) {
+    transform: scale(0.96);
+  }
 }
 
-.header__link:hover {
-  color: #021b2b;
-  transition: color 0.3 ease-in-out;
-}
-
-.header__items {
-  padding-bottom: 10px;
+.header__list {
   display: flex;
   gap: 25px;
-}
-
-.header__items {
-  list-style: none;
 }
 
 .header__img {
@@ -126,20 +128,102 @@ const logoIcon = ref("/img/logo.svg");
   border-radius: 5px;
   outline: none;
   color: #023859;
-  font-family: "Montserrat";
 }
 
-.form {
-  gap: 10px;
-  display: flex;
-  align-items: center;
-}
+.header {
+  &__form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    align-items: stretch;
+  }
+  &__logo {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    &:focus-visible {
+      outline: none;
 
+      & span::after {
+        width: 100%;
+      }
+    }
+
+    & span {
+      position: absolute;
+      bottom: 7px;
+      left: 27px;
+      display: block;
+      font-size: 24px;
+      font-weight: 600;
+      color: #01304d;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #01304d;
+        transition: width 0.3s ease-in-out;
+      }
+    }
+  }
+  &__form-input {
+    background: #d4d5d5;
+    border-radius: 5px;
+    border: none;
+    color: black;
+    font-size: 24px;
+    font-weight: 700;
+    outline: 1px solid transparent;
+    padding: 10px 0 10px 10px;
+    width: 100%;
+    transition: outline 0.3s ease-in-out;
+    &:focus {
+      outline: 1px solid #01304d;
+    }
+  }
+
+  &__form-btn {
+    background: #d4d5d5;
+    padding: 10px 30px;
+    color: black;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
+
+    &:focus-visible {
+      outline: none;
+      background: rgb(9, 66, 0);
+      color: #fff;
+    }
+    &:hover {
+      background: #01558a;
+      color: #fff;
+    }
+    &:active {
+      background: #01304d;
+      color: #fff;
+    }
+  }
+}
 .form ::placeholder {
   color: #023859;
   opacity: 0.7;
 }
-
+.custom__form-input {
+  width: 100%;
+  background: #d4d5d5;
+  border-radius: 5px;
+  border: none;
+  color: black;
+}
 .header__btn {
   position: relative;
   width: 60px;
@@ -183,9 +267,10 @@ const logoIcon = ref("/img/logo.svg");
   font-size: 13px;
   font-weight: 100;
 }
-
+.v-field__input {
+  color: #023859;
+}
 .header {
   padding-bottom: 20px;
 }
 </style>
-../ui/Icon/MailIcon.vue../ui/Icon/PhoneIcon.vue
