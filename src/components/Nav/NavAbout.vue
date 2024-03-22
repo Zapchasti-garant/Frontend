@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import Aboutlogo from "@/ui/Icon/Aboutlogo.vue";
+import Aboutlogo from "@/ui/Icon/IconAboutlogo.vue";
 </script>
 
 <style scoped>

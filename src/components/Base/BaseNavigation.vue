@@ -4,14 +4,14 @@
       <aside>
         <nav class="navigation__nav">
           <ul class="list-reset navigation__list">
-            <li
-              class="navigation__item"
-              :class="{ isActive: route.path === '/' }"
-            >
-              <router-link :to="{ name: 'home' }" class="navigation__link">
+            <router-link :to="{ name: 'home' }" class="navigation__link">
+              <li
+                class="navigation__item"
+                :class="{ isActive: route.path === '/' }"
+              >
                 О компании
-              </router-link>
-            </li>
+              </li>
+            </router-link>
             <li
               class="navigation__item"
               :class="{ isActive: route.path === '/news' }"
@@ -85,10 +85,14 @@ const route = useRoute();
     color: aliceblue;
     transition: color 0.3s ease-in-out;
 
-
-    &:hover {
+    &:focus-visible {
+      outline: none;
+      color: #ca0000;
+    }
+    &:hover:not(:focus-visible) {
       color: #dedcdc;
     }
+
     &:hover::after {
       transform: scale(1);
     }
@@ -111,6 +115,10 @@ const route = useRoute();
   background-color: #0b5887;
   position: relative;
   transition: all 0.3s ease-in-out;
+
+  :hover::after {
+    transform: scale(0);
+  }
   &::after {
     content: "";
     position: absolute;

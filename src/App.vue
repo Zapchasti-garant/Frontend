@@ -6,7 +6,7 @@
   <main class="main">
     <div class="container">
       <div class="main__wrapper">
-       <BaseLeftPanel />
+        <BaseLeftPanel />
         <div>
           <router-view v-slot="{ Component }">
             <transition name="fade" mode="out-in">
@@ -26,9 +26,9 @@ import BaseLeftPanel from "@/components/Base/BaseLeftPanel.vue";
 import Navigation from "@/components/Base/BaseNavigation.vue";
 import { Transition, ref, watch } from "vue";
 import { useRoute } from "vue-router";
+import BaseFooter from "./components/Base/BaseFooter.vue";
 import Background from "./ui/Background.vue";
 import Carousel from "./ui/Carousel.vue";
-import BaseFooter from "./components/Base/BaseFooter.vue";
 
 const showCarousel = ref(true);
 const route = useRoute();
@@ -59,7 +59,8 @@ watch(
   padding-top: 25px;
 }
 .main__wrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  gap: 15px;
 }
-
 </style>
