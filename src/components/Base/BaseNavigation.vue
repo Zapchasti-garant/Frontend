@@ -17,7 +17,7 @@
               :class="{ isActive: route.path === '/news' }"
             >
               <router-link :to="{ name: 'news' }" class="navigation__link">
-                Новости
+                Запчасти
               </router-link>
             </li>
             <li
@@ -25,14 +25,6 @@
               :class="{ isActive: route.path === '/offers' }"
             >
               <router-link :to="{ name: 'offers' }" class="navigation__link">
-                Спецпредложения
-              </router-link>
-            </li>
-            <li
-              class="navigation__item"
-              :class="{ isActive: route.path === '/stock' }"
-            >
-              <router-link to="/stock" class="navigation__link">
                 На складе
               </router-link>
             </li>
@@ -42,14 +34,6 @@
             >
               <router-link to="/contacts" class="navigation__link">
                 Контакты
-              </router-link>
-            </li>
-            <li
-              class="navigation__item"
-              :class="{ isActive: route.path === '/parts' }"
-            >
-              <router-link to="/parts" class="navigation__link">
-                Запасные части
               </router-link>
             </li>
             <li
