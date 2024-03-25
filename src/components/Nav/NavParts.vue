@@ -54,7 +54,6 @@ const changeView = async (view: number) => {
 
 onMounted(async () => {
   listData.value = await store.getList('','',page.value)
-  console.log(store.listData)
 })
 
 </script>

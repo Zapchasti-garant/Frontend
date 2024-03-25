@@ -57,13 +57,12 @@ import ky from 'ky'
 import {BASE_URL} from "../../../config.ts";
 import {useStore} from "@/store/store.ts";
 
+const data = ref<T>('')
 const store = useStore()
 onMounted(async () => {
   const res = await ky.get(BASE_URL + 'posts/')
   data.value = res.json()
-  console.log(data.value)
 })
-const data = ref('')
 const inputValue = ref<string>('')
 const getList = async () => {
   setTimeout(async () => {

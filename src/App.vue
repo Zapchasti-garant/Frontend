@@ -24,13 +24,16 @@
 import Header from "@/components/Base/BaseHeader.vue";
 import BaseLeftPanel from "@/components/Base/BaseLeftPanel.vue";
 import Navigation from "@/components/Base/BaseNavigation.vue";
-import {ref, Transition, watch} from "vue";
+import {onMounted, ref, Transition, watch} from "vue";
 import {useRoute} from "vue-router";
 import BaseFooter from "./components/Base/BaseFooter.vue";
 import Background from "./ui/Background.vue";
 import Carousel from "./ui/Carousel.vue"
+import {testing} from "@/composables/useApi.ts";
 
-
+onMounted(async () => {
+  await testing()
+})
 const showCarousel = ref(true);
 const route = useRoute();
 watch(

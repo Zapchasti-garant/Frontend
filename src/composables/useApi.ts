@@ -21,7 +21,7 @@ export const useApi = async (name:string, id?: string, page?: number) => {
     url = `posts/${parseInt(id)}`
   }
   try {
-    const res = await api.get(url,{})
+    const res = await api.get(url)
                 status = res.status
                 data = await res.json<List[]>()
   } catch (error) {
@@ -42,4 +42,13 @@ export const useSearchData = async (name: string) => {
     console.log(err)
   }
   return data
+}
+
+export const testing = async ()=> {
+  try{
+    const res = await ky.get('http://localhost:8080/product').json()
+    console.log(res)
+  } catch (err) {
+    console.log(err)
+  }
 }

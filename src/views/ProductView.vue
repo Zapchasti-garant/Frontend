@@ -16,7 +16,7 @@ const itemIdNew = parseInt(itemId);
 const store = useStore()
 
 
-const oneItem = store.getOneProduct(itemIdNew)
+const oneItem = store.getProduct(itemIdNew)
 </script>
 
 <style scoped>

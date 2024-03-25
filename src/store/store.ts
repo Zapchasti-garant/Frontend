@@ -34,8 +34,5 @@ export const useStore = defineStore('store', {
     async fetchSearch(name: string) {
       this.listSearch = await useSearchData(name)
     },
-    getOneProduct(id: number) {
-      return this.listData.find((item) => item.id === id)
-    }
 	},
 })
