@@ -2,7 +2,7 @@
   <div class="container">
     <div class="about__wrapper">
       <div class="right">
-        <Aboutlogo />
+        <IconAboutlogo />
         <p class="about__text">
           Наша молодая компания активно сотрудничает со многими производителями запасных частей к
 маневровым тепловозам, вагонных комплектующих, материалов ВСП, путевого инструмента и
@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import Aboutlogo from "@/ui/Icon/IconAboutlogo.vue";
+import IconAboutlogo from "@/ui/Icon/IconAboutlogo.vue";
 </script>
 
 <style scoped>

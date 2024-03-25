@@ -16,24 +16,28 @@
             <ul class="header__list list-reset">
               <li class="header__item">
                 <a href="mailto:1234353534@uandex.ru" class="header__link">
-                  <MailIcon /> example@yandex.ru</a
+                  <IconMail /> example@yandex.ru</a
                 >
                 <img src="" alt="" />
               </li>
               <li class="header__item">
                 <a href="tel:+79529632724" class="header__link"
-                  ><PhoneIcon /> +7-952-963-27-24</a
+                  ><IconPhone /> +7-952-963-27-24</a
                 >
               </li>
               <li class="header__item">
                 <a href="tel:+79586461377" class="header__link"
-                  ><PhoneIcon /> +7-958-646-13-77</a
+                  ><IconPhone /> +7-958-646-13-77</a
                 >
               </li>
             </ul>
           </nav>
           <form class="header__form">
-            <input type="text" class="header__form-input" />
+            <div class="header__input-wrapper">
+              <input type="text" class="header__form-input" v-model="inputValue" @input="getList"/>
+              <BaseSearch class="header__list-search"/>
+            </div>
+
             <button class="header__form-btn" type="submit" tabindex="0">
               Поиск
             </button>
@@ -45,90 +49,46 @@
 </template>
 
 <script setup lang="ts">
-import MailIcon from "@/ui/Icon/IconMail.vue";
-import PhoneIcon from "@/ui/Icon/IconPhone.vue";
-import { ref } from "vue";
+import IconMail from "@/ui/Icon/IconMail.vue";
+import IconPhone from "@/ui/Icon/IconPhone.vue";
+import {onMounted, ref} from "vue";
+import BaseSearch from "@/components/Base/BaseSearch.vue";
+import ky from 'ky'
+import {BASE_URL} from "../../../config.ts";
+import {useStore} from "@/store/store.ts";
+
+const store = useStore()
+onMounted(async () => {
+  const res = await ky.get(BASE_URL + 'posts/')
+  data.value = res.json()
+  console.log(data.value)
+})
+const data = ref('')
+const inputValue = ref<string>('')
+const getList = async () => {
+  setTimeout(async () => {
+    await store.fetchSearch(inputValue.value)
+  }, 2000)
+}
 const logoIcon = ref("/img/logo.svg");
+
 </script>
 
 <style scoped lang="scss">
-.header__item svg {
-  width: 20px;
-  height: 20px;
-}
-
-.header__item-mail svg {
-  width: 20px;
-  height: 15px;
-  padding-right: 4px;
-}
-
-.header__wrapper {
-  padding-top: 20px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.header__link {
-  display: flex;
-  align-items: center;
-  position: relative;
-  gap: 5px;
-  font-size: 20px;
-  font-weight: 600;
-  color: #023859;
-  text-decoration: none;
-  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
-
-  &::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: -5px;
-    left: 0;
-    transform: scale(0);
-    border-radius: 50%;
-    background: #023859;
-    transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
-  }
-
-  &:focus-visible {
-    outline: none;
-    color: #ca0000;
-  }
-  &:hover:not(:focus-visible):after {
-    transform: scale(1);
-  }
-  &:hover:not(:focus-visible) {
-    color: #021b2b;
-    transition: color 0.3 ease-in-out;
-  }
-  &:active:not(:focus-visible) {
-    transform: scale(0.96);
-  }
-}
-
-.header__list {
-  display: flex;
-  gap: 25px;
-}
-
-.header__img {
-  width: 250px;
-  height: 110px;
-}
-
-.header__search {
-  width: 200px;
-  height: 21px;
-  border: 1px solid #023859;
-  border-radius: 5px;
-  outline: none;
-  color: #023859;
-}
-
 .header {
+  &__input-wrapper {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  &__list-search {
+    position: absolute;
+    z-index: 30;
+    left: 0;
+    top: 105%;
+    width: 100%;
+  }
   &__form {
     display: flex;
     gap: 10px;
@@ -211,6 +171,83 @@ const logoIcon = ref("/img/logo.svg");
     }
   }
 }
+.header__item svg {
+  width: 20px;
+  height: 20px;
+}
+
+.header__item-mail svg {
+  width: 20px;
+  height: 15px;
+  padding-right: 4px;
+}
+
+.header__wrapper {
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__link {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 5px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #023859;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    transform: scale(0);
+    border-radius: 50%;
+    background: #023859;
+    transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+
+  &:focus-visible {
+    outline: none;
+    color: #ca0000;
+  }
+  &:hover:not(:focus-visible):after {
+    transform: scale(1);
+  }
+  &:hover:not(:focus-visible) {
+    color: #021b2b;
+    transition: color 0.3 ease-in-out;
+  }
+  &:active:not(:focus-visible) {
+    transform: scale(0.96);
+  }
+}
+
+.header__list {
+  display: flex;
+  gap: 25px;
+}
+
+.header__img {
+  width: 250px;
+  height: 110px;
+}
+
+.header__search {
+  width: 200px;
+  height: 21px;
+  border: 1px solid #023859;
+  border-radius: 5px;
+  outline: none;
+  color: #023859;
+}
+
+
 .form ::placeholder {
   color: #023859;
   opacity: 0.7;

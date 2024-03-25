@@ -1,6 +1,6 @@
 // Composables
 
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import {createRouter, createWebHistory, RouteRecordRaw} from "vue-router";
 
 const routes: RouteRecordRaw[] = [
   {
@@ -21,13 +21,18 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/news",
     name: "news",
-    component: () => import("@/views/NewsView.vue"),
+    component: () => import("@/views/PartsView.vue"),
   },
   {
     path: "/offers",
     name: "offers",
-    component: () => import("@/views/OffersView.vue"),
+    component: () => import("@/views/StockView.vue"),
   },
+  {
+    path: '/product/:id',
+    name: 'oneProduct',
+    component: () => import('@/views/ProductView.vue')
+  }
 ];
 
 const router = createRouter({

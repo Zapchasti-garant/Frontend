@@ -1,5 +1,5 @@
 <template>
-  <div class="container">Компонент Спец предложений</div>
+  <div class="container">Компонент На складе</div>
 </template>
 
 <script setup lang="ts"></script>

@@ -1,11 +1,11 @@
 <template>
   <div>
-    <NavNews />
+    <NavParts />
   </div>
 </template>
 
 <script setup lang="ts">
-import NavNews from "@/components/Nav/NavNews.vue";
+import NavParts from "@/components/Nav/NavParts.vue";
 </script>
 
 <style scoped></style>
