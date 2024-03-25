@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-const backImg = ref("/img/img3.jpg");
+const backImg = ref("/img/img4.jpg");
 </script>
 
 <style scoped>
@@ -20,7 +20,7 @@ const backImg = ref("/img/img3.jpg");
   background-image: url("/img/back-carousel.png");
 }
 .wrapper__img {
-  height: 340px;
+  height: 360px;
 }
 .imgFon {
   width: 100%;
