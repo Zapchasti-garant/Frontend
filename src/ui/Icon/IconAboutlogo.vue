@@ -1,14 +1,26 @@
 <template>
-  <img :src="logoIcon" alt="" class="aboutlogo" />
+  <img :src="logoIcon" alt="Логотип" :width="props.width" :height="props.height"/>
 </template>
 
 <script setup lang="ts">
-const logoIcon = "/img/about1.jpg";
+import { defineProps } from "vue";
+import { ref } from "vue";
+
+const props = defineProps({
+  width: {
+    type: Number,
+    default: 48,
+  },
+  height: {
+    type: Number,
+    default: 48,
+  },
+});
+
+const logoIcon = ref("/img/img_logo.svg");
+
 </script>
 
 <style scoped>
-.aboutlogo {
-  width: 250px;
-  height: 250px;
-}
+
 </style>

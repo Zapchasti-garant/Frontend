@@ -2,40 +2,46 @@
   <header class="header">
     <div class="container">
       <div class="header__wrapper">
-        <router-link class="header__logo" to="/" tabindex="0"
-          ><img
-            class="header__img"
-            :src="logoIcon"
-            alt="Логотип"
-            tabindex="-1"
-          />
+        <router-link class="header__logo" to="/" tabindex="0">
+          <IconAboutlogo :width="110" :height="110" class="header__img" />
           <span tabindex="-1">"Промжелснаб"</span></router-link
         >
+
         <div class="header__wrapper-contacts">
           <nav class="header__nav">
             <ul class="header__list list-reset">
               <li class="header__item">
                 <a href="mailto:1234353534@uandex.ru" class="header__link">
-                  <IconMail /> example@yandex.ru</a
+                  <IconMail /> pjs-bryansk@yandex.ru</a
                 >
                 <img src="" alt="" />
               </li>
               <li class="header__item">
-                <a href="tel:+79529632724" class="header__link"
-                  ><IconPhone /> +7-952-963-27-24</a
+                <a href="tel:+74832599242" class="header__link"
+                  ><IconPhone /> 8 (4832) 599-242</a
                 >
               </li>
               <li class="header__item">
                 <a href="tel:+79586461377" class="header__link"
-                  ><IconPhone /> +7-958-646-13-77</a
+                  ><IconPhone /> 8-952-963-27-24</a
+                >
+              </li>
+              <li class="header__item">
+                <a href="tel:+79586461377" class="header__link"
+                  ><IconPhone /> 8-958-646-13-77</a
                 >
               </li>
             </ul>
           </nav>
           <form class="header__form">
             <div class="header__input-wrapper">
-              <input type="text" class="header__form-input" v-model="inputValue" @input="getList"/>
-              <BaseSearch class="header__list-search"/>
+              <input
+                type="text"
+                class="header__form-input"
+                v-model="inputValue"
+                @input="getList"
+              />
+              <BaseSearch class="header__list-search" />
             </div>
 
             <button class="header__form-btn" type="submit" tabindex="0">
@@ -51,27 +57,26 @@
 <script setup lang="ts">
 import IconMail from "@/ui/Icon/IconMail.vue";
 import IconPhone from "@/ui/Icon/IconPhone.vue";
-import {onMounted, ref} from "vue";
+import { onMounted, ref } from "vue";
 import BaseSearch from "@/components/Base/BaseSearch.vue";
-import ky from 'ky'
-import {BASE_URL} from "../../../config.ts";
-import {useStore} from "@/store/store.ts";
+import ky from "ky";
+import { BASE_URL } from "../../../config.ts";
+import { useStore } from "@/store/store.ts";
+import IconAboutlogo from "@/ui/Icon/IconAboutlogo.vue";
 
-const store = useStore()
+const store = useStore();
 onMounted(async () => {
-  const res = await ky.get(BASE_URL + 'posts/')
-  data.value = res.json()
-  console.log(data.value)
-})
-const data = ref('')
-const inputValue = ref<string>('')
+  const res = await ky.get(BASE_URL + "posts/");
+  data.value = res.json();
+  console.log(data.value);
+});
+const data = ref("");
+const inputValue = ref<string>("");
 const getList = async () => {
   setTimeout(async () => {
-    await store.fetchSearch(inputValue.value)
-  }, 2000)
-}
-const logoIcon = ref("/img/logo.svg");
-
+    await store.fetchSearch(inputValue.value);
+  }, 2000);
+};
 </script>
 
 <style scoped lang="scss">
@@ -95,6 +100,10 @@ const logoIcon = ref("/img/logo.svg");
     align-items: center;
     align-items: stretch;
   }
+  &__img {
+    translate: 0 -10px;
+    margin-left: 35%;
+  }
   &__logo {
     position: relative;
     display: block;
@@ -109,17 +118,17 @@ const logoIcon = ref("/img/logo.svg");
 
     & span {
       position: absolute;
-      bottom: 7px;
-      left: 27px;
+      bottom: -7px;
+      left: 20px;
       display: block;
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 600;
       color: #01304d;
 
       &::after {
         content: "";
         position: absolute;
-        bottom: -5px;
+        bottom: -11px;
         left: 0;
         width: 0;
         height: 2px;
@@ -233,11 +242,6 @@ const logoIcon = ref("/img/logo.svg");
   gap: 25px;
 }
 
-.header__img {
-  width: 250px;
-  height: 110px;
-}
-
 .header__search {
   width: 200px;
   height: 21px;
@@ -246,7 +250,6 @@ const logoIcon = ref("/img/logo.svg");
   outline: none;
   color: #023859;
 }
-
 
 .form ::placeholder {
   color: #023859;
@@ -306,6 +309,6 @@ const logoIcon = ref("/img/logo.svg");
   color: #023859;
 }
 .header {
-  padding-bottom: 20px;
+  padding-bottom: 30px;
 }
 </style>

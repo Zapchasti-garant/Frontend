@@ -56,7 +56,7 @@
       </tr>
       <tr>
         <th>E-mail</th>
-        <td>--------------</td>
+        <td>pjs-bryansk@yandex.ru</td>
       </tr>
     </table>
   </div>
@@ -66,6 +66,7 @@
 
 <style scoped lang="scss">
 .table {
+  margin-bottom: 20px;
   border-collapse: collapse;
 
   td {
@@ -81,9 +82,4 @@
 
 }
 
-.table__title {
-  margin-bottom: 20px;
-  text-align: center;
-  color: #023859;
-}
 </style>

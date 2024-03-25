@@ -27,19 +27,19 @@
               <li class="navigation__item">На складе</li>
             </router-link>
             <router-link
+              to="/dillers"
+              class="navigation__link"
+              :class="{ isActive: route.path === '/dillers' }"
+            >
+              <li class="navigation__item">Дилерская продукция</li></router-link
+            >
+            <router-link
               to="/contacts"
               class="navigation__link"
               :class="{ isActive: route.path === '/contacts' }"
             >
               <li class="navigation__item">Контакты</li>
             </router-link>
-            <router-link
-              to="/dillers"
-              class="navigation__link"
-              :class="{ isActive: route.path === '/dillers' }"
-            >
-              <li class="navigation__item">Дилерство</li></router-link
-            >
           </ul>
         </nav>
       </aside>
