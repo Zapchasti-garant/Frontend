@@ -18,8 +18,7 @@ import {Product} from "@/types/types.ts";
 import {computed} from "vue";
 
 const store = useStore()
-// "laboriosam dolor voluptates"
-const listSearch = computed(() => store.getSearch as Product[])
+const listSearch = computed(() => store.listSearch as Product[])
 </script>
 
 <style scoped>

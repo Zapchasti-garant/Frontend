@@ -46,7 +46,7 @@ export const useSearchData = async (name: string) => {
 
 export const testing = async ()=> {
   try{
-    const res = await ky.get('http://localhost:8080/product').json()
+    const res = await apiSearch.get('posts').json()
     console.log(res)
   } catch (err) {
     console.log(err)

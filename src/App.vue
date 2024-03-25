@@ -30,6 +30,9 @@ import BaseFooter from "./components/Base/BaseFooter.vue";
 import Background from "./ui/Background.vue";
 import Carousel from "./ui/Carousel.vue"
 import {testing} from "@/composables/useApi.ts";
+import {useStore} from "@/store/store.ts";
+
+const store = useStore()
 
 onMounted(async () => {
   await testing()
@@ -39,6 +42,9 @@ const route = useRoute();
 watch(
   () => route.path,
   (newVal) => {
+    if(newVal === '/') {
+      store.clearState()
+    }
     showCarousel.value = newVal === "/";
   }
 );

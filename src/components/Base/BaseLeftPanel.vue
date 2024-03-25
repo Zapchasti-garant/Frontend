@@ -1,7 +1,6 @@
 <template>
   <v-card class="mx-auto" width="300">
     <v-list>
-
       <v-list-item class="text-center list-title">На складе</v-list-item>
     </v-list>
     <v-list v-model:opened="open">
