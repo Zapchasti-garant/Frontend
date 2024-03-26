@@ -20,7 +20,7 @@ import {images} from "../helpers/helpersData.ts";
 <style scoped>
 .carousel__wrapper {
   width: 100%;
-  background-color: aqua;
+  background-color: grey;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
