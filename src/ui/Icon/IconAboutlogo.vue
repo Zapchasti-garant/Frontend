@@ -3,8 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
-import { ref } from "vue";
+import {defineProps, ref} from "vue";
 
 const props = defineProps({
   width: {
@@ -17,7 +16,7 @@ const props = defineProps({
   },
 });
 
-const logoIcon = ref("/img/img_logo.svg");
+const logoIcon = ref("/img/about1.png");
 
 </script>
 

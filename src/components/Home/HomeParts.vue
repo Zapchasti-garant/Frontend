@@ -45,12 +45,7 @@ import {useStore} from "@/store/store.ts";
 import {useRouter} from "vue-router";
 
 const $router = useRouter()
-interface List {
-  body: string
-  title: string
-  user_id: string
-  id: number
-}
+
 const loadSkeleton = ref(true)
 const goToViewProduct = (id: number) => {
   $router.push({name: 'product', params: {id}})

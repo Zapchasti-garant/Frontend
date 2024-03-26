@@ -8,6 +8,7 @@
       :title="item.name"
       :value="item"
       :prepend-icon="item.icon"
+      style="background: #1e75a0; color: #fff"
     ></v-list-item>
   </div>
 </template>
@@ -41,5 +42,17 @@ const props = defineProps({
 }
 .top-panel {
   border: 1px solid #01304d;
+  background: #1e75a0 !important;
+  
 }
+.v-list-item {
+  padding: 4px 16px 4px 16px !important;
+  display:grid;
+  grid-template-columns: 30px 1fr;
+}
+.v-list-item-title {
+  font-size: 14px;
+  color: #9e9999;
+}
+
 </style>
