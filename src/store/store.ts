@@ -35,6 +35,7 @@ export const useStore = defineStore('store', () => {
       listSearch.value = res.value
     } else {
       if(res.value.length === 0) {
+        listSearch.value = []
         listSearch.value.push(error)
       }
     }
