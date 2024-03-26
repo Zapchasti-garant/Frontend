@@ -32,13 +32,13 @@
               </li>
             </ul>
           </nav>
-          <form class="header__form">
-            <div class="header__input-wrapper">
-              <input type="text" class="header__form-input" v-model="inputValue" @input="getList"/>
-              <BaseSearch class="header__list-search"/>
+          <form class="header__form" >
+            <div class="header__input-wrapper" tabindex="-1">
+              <input type="text" class="header__form-input" v-model="inputValue" @input="getList" aria-label="input"/>
+              <HomeSearch class="header__list-search" tabindex="-1"/>
             </div>
 
-            <button class="header__form-btn" type="submit" tabindex="0">
+            <button class="header__form-btn" type="submit">
               Поиск
             </button>
           </form>
@@ -52,7 +52,7 @@
 import IconMail from "@/ui/Icon/IconMail.vue";
 import IconPhone from "@/ui/Icon/IconPhone.vue";
 import {ref} from "vue";
-import BaseSearch from "@/components/Home/HomeSearch.vue";
+import HomeSearch from "@/components/Home/HomeSearch.vue";
 import {useStore} from "@/store/store.ts";
 
 const store = useStore()

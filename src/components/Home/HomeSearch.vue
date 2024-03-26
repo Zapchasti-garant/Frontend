@@ -1,5 +1,4 @@
 <template>
-  <div>
     <v-list lines="one">
       <v-list-item
         v-for="(ctx, idx) in listSearch"
@@ -9,7 +8,6 @@
         <h4>{{ctx.title}}</h4>
       </v-list-item>
     </v-list>
-  </div>
 </template>
 
 <script setup lang="ts">
