@@ -3,12 +3,8 @@
     <div class="container">
       <div class="header__wrapper">
         <router-link class="header__logo" to="/" tabindex="0"
-          ><img
-            class="header__img"
-            :src="logoIcon"
-            alt="Логотип"
-            tabindex="-1"
-          />
+          >
+<IconAboutlogo :width="120" :height="120"  class="header__img"/>
           <span tabindex="-1">"Промжелснаб"</span></router-link
         >
         <div class="header__wrapper-contacts">
@@ -16,9 +12,14 @@
             <ul class="header__list list-reset">
               <li class="header__item">
                 <a href="mailto:1234353534@uandex.ru" class="header__link">
-                  <IconMail /> example@yandex.ru</a
+                  <IconMail /> pjs-bryansk@yandex.ru</a
                 >
                 <img src="" alt="" />
+              </li>
+              <li class="header__item">
+                <a href="tel:+74832599242" class="header__link"
+                  ><IconPhone /> +7 (4832) 599-242</a
+                >
               </li>
               <li class="header__item">
                 <a href="tel:+79529632724" class="header__link"
@@ -54,6 +55,7 @@ import IconPhone from "@/ui/Icon/IconPhone.vue";
 import {ref} from "vue";
 import BaseSearch from "@/components/Home/HomeSearch.vue";
 import {useStore} from "@/store/store.ts";
+import IconAboutlogo from "@/ui/Icon/IconAboutlogo.vue";
 
 const store = useStore()
 
@@ -65,7 +67,7 @@ const getList = async () => {
     }, 1500)
   }
 }
-const logoIcon = ref("/img/logo.svg");
+
 
 </script>
 
@@ -89,6 +91,10 @@ const logoIcon = ref("/img/logo.svg");
     gap: 10px;
     align-items: stretch;
   }
+  &__img {
+    translate: 0 -10px;
+    margin-left: 27%;
+  }
   &__logo {
     position: relative;
     display: block;
@@ -103,17 +109,17 @@ const logoIcon = ref("/img/logo.svg");
 
     & span {
       position: absolute;
-      bottom: 7px;
-      left: 27px;
+      bottom: -7px;
+      left: 20px;
       display: block;
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 600;
       color: #01304d;
 
       &::after {
         content: "";
         position: absolute;
-        bottom: -5px;
+        bottom: -11px;
         left: 0;
         width: 0;
         height: 2px;
@@ -225,11 +231,6 @@ const logoIcon = ref("/img/logo.svg");
 .header__list {
   display: flex;
   gap: 25px;
-}
-
-.header__img {
-  width: 250px;
-  height: 110px;
 }
 
 .header__search {
