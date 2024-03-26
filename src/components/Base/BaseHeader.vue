@@ -4,7 +4,7 @@
       <div class="header__wrapper">
         <router-link class="header__logo" to="/" tabindex="0"
           >
-<IconAboutlogo :width="120" :height="120"  class="header__img"/>
+              <IconAboutlogo :width="120" :height="120"  class="header__img"/>
           <span tabindex="-1">"Промжелснаб"</span></router-link
         >
         <div class="header__wrapper-contacts">
