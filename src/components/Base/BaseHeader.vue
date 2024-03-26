@@ -32,13 +32,13 @@
               </li>
             </ul>
           </nav>
-          <form class="header__form">
-            <div class="header__input-wrapper">
-              <input type="text" class="header__form-input" v-model="inputValue" @input="getList"/>
-              <BaseSearch class="header__list-search"/>
+          <form class="header__form" >
+            <div class="header__input-wrapper" tabindex="-1">
+              <input type="text" class="header__form-input" v-model="inputValue" @input="getList" aria-label="input"/>
+              <HomeSearch class="header__list-search" tabindex="-1"/>
             </div>
 
-            <button class="header__form-btn" type="submit" tabindex="0">
+            <button class="header__form-btn" type="submit">
               Поиск
             </button>
           </form>
@@ -51,24 +51,19 @@
 <script setup lang="ts">
 import IconMail from "@/ui/Icon/IconMail.vue";
 import IconPhone from "@/ui/Icon/IconPhone.vue";
-import {onMounted, ref} from "vue";
-import BaseSearch from "@/components/Base/BaseSearch.vue";
-import ky from 'ky'
-import {BASE_URL} from "../../../config.ts";
+import {ref} from "vue";
+import HomeSearch from "@/components/Home/HomeSearch.vue";
 import {useStore} from "@/store/store.ts";
 
 const store = useStore()
-onMounted(async () => {
-  const res = await ky.get(BASE_URL + 'posts/')
-  data.value = res.json()
-  console.log(data.value)
-})
-const data = ref('')
+
 const inputValue = ref<string>('')
 const getList = async () => {
-  setTimeout(async () => {
-    await store.fetchSearch(inputValue.value)
-  }, 2000)
+  if(inputValue.value.length === 4) {
+    setTimeout(async () => {
+      await store.fetchSearch(inputValue.value)
+    }, 1500)
+  }
 }
 const logoIcon = ref("/img/logo.svg");
 
@@ -92,7 +87,6 @@ const logoIcon = ref("/img/logo.svg");
   &__form {
     display: flex;
     gap: 10px;
-    align-items: center;
     align-items: stretch;
   }
   &__logo {
@@ -221,7 +215,7 @@ const logoIcon = ref("/img/logo.svg");
   }
   &:hover:not(:focus-visible) {
     color: #021b2b;
-    transition: color 0.3 ease-in-out;
+    transition: color 0.3s ease-in-out;
   }
   &:active:not(:focus-visible) {
     transform: scale(0.96);

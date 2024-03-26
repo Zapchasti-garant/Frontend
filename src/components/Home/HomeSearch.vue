@@ -1,5 +1,4 @@
 <template>
-  <div>
     <v-list lines="one">
       <v-list-item
         v-for="(ctx, idx) in listSearch"
@@ -9,7 +8,6 @@
         <h4>{{ctx.title}}</h4>
       </v-list-item>
     </v-list>
-  </div>
 </template>
 
 <script setup lang="ts">
@@ -18,8 +16,7 @@ import {Product} from "@/types/types.ts";
 import {computed} from "vue";
 
 const store = useStore()
-// "laboriosam dolor voluptates"
-const listSearch = computed(() => store.getSearch as Product[])
+const listSearch = computed(() => store.listSearch as Product[])
 </script>
 
 <style scoped>

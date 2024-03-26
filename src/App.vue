@@ -29,13 +29,17 @@ import {useRoute} from "vue-router";
 import BaseFooter from "./components/Base/BaseFooter.vue";
 import Background from "./ui/Background.vue";
 import Carousel from "./ui/Carousel.vue"
+import {useStore} from "@/store/store.ts";
 
-
+const store = useStore()
 const showCarousel = ref(true);
 const route = useRoute();
 watch(
   () => route.path,
   (newVal) => {
+    if(newVal === '/') {
+      store.clearState()
+    }
     showCarousel.value = newVal === "/";
   }
 );

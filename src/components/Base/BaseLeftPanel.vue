@@ -1,73 +1,105 @@
 <template>
-  <v-card class="mx-auto pa-2" width="370" height="100%" :class="'PanelLeft'">
+  <v-card class="mx-auto" width="300">
     <v-list>
-      <v-list-subheader :class="'PanelLeft__title'">Навигация</v-list-subheader>
-
-      <v-list-item
-        v-for="(item, i) in items"
-        :key="i"
-        :value="item"
-        color="primary"
-        rounded="l"
-        class="PanelLeft__item"
-      >
-        <template v-slot:prepend>
-          <v-icon :icon="item.icon"></v-icon>
+      <v-list-item class="text-center list-title">На складе</v-list-item>
+    </v-list>
+    <v-list v-model:opened="open">
+      <v-list-group value="itemsTop">
+        <template v-slot:activator="{ props }">
+          <v-list-item
+            class="list-item"
+            color="primary"
+            prepend-icon="mdi-tram-side"
+            v-bind="props"
+            title="Запчасти к тепловозам"
+          ></v-list-item>
         </template>
 
-        <v-list-item-title
-          v-text="item.text"
-          class="v-list-item-title"
-        ></v-list-item-title>
-      </v-list-item>
+        <BaseLeftPanelItem :list="itemsTopList"/>
+      </v-list-group>
+
+    </v-list>
+    <v-list v-model:opened="open2">
+      <v-list-group value="itemsBottom" class="list-group">
+        <template v-slot:activator="{ props }">
+          <v-list-item
+            class="list-item"
+            color="primary"
+            v-bind="props"
+            prepend-icon="mdi-train"
+            title="Запчасти к дизелям"
+
+          ></v-list-item>
+        </template>
+
+
+        <BaseLeftPanelItem :list="itemsBottomList"/>
+      </v-list-group>
+    </v-list>
+    <v-list>
+      <BaseLeftPanelItem :list="itemsBottom" :class="bottomClass"/>
     </v-list>
   </v-card>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import BaseLeftPanelItem from "@/components/Home/HomeLeftPanelItem.vue";
+import {ref} from "vue";
+import {itemsBottom, itemsBottomList, itemsTopList} from "@/helpers/helpersData.ts";
 
-const items = ref([
-  { text: "НА СКЛАДЕ", icon: "mdi-tools " },
-  { text: "ЗАПЧАСТИ К ТЕПЛОВИЗОРАМ", icon: "mdi-wrench-outline " },
-  { text: "ПРОКЛАДКИ И КОЛЬЦА", icon: "mdi-wrench-outline" },
-  { text: "ЭЛЕКТРООБОРУДОВАНИЯ", icon: "mdi-wrench-outline" },
-  { text: "КОМПЛЕКТЫ РТИ", icon: "mdi-subway-variant " },
-  { text: "ДИЗЕЛЬНЫЕ ЗАПЧАСТИ", icon: "mdi-train-car-passenger-door-open " },
-  { text: "ДИЗЕЛЬНЫЕ ЗАПЧАСТИ", icon: "mdi-train-car-box " },
-  { text: "ДИЗЕЛЬНЫЕ ЗАПЧАСТИ", icon: "mdi-flag" },
-  { text: "ДИЗЕЛЬНЫЕ ЗАПЧАСТИ", icon: "mdi-flag" },
-  { text: "ДИЗЕЛЬНЫЕ ЗАПЧАСТИ", icon: "mdi-flag" },
-]);
+
+const open = ref(["items"]);
+const open2 = ref(["items"]);
+
+const bottomClass = 'top-panel'
+
 </script>
 
-<style scoped lang="scss">
-.PanelLeft {
-  &__title {
-    padding: 0;
-    color: #023859;
-    font-size: 23px;
-    font-weight: 600;
-    margin-bottom: 15px;
-  }
-
-  &__item {
-    font-size: 18px;
-    font-weight: 400;
-    color: #023859;
-    border: 1px solid #023859;
-  }
-
-  &__item:not(:nth-last-child(1)) {
-    margin-bottom: 10px;
-  }
+<style scoped>
+.list-title {
+  cursor: pointer;
+  font-size: 25px;
+  color: #01304d;
+}
+.list-item {
+  color: #01304d;
+  border: 1px solid #01304d;
+  border-radius: 7px;
+}
+.v-list {
+  padding: 0;
+  margin-bottom: 5px;
+  color: #01304d;
+}
+.v-list-group__items {
+  padding: 0;
+}
+.list-group {
+  flex-direction: column;
+}
+.v-list-item {
+  padding: 4px 16px 4px 16px !important;
+  display:grid;
+  grid-template-columns: 30px 1fr;
+}
+.v-list {
+  padding: 0;
+}
+.v-list-item {
+  margin-bottom: 5px;
+  border: 1px solid #01304d;
+  border-radius: 7px;
+  color: #01304d;
+}
+.v-card--variant-elevated {
+  box-shadow: none;
 }
 
 .v-list-item-title {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 14px;
 }
-.isActive {
-  color: aqua;
+.v-list-item {
+  display:grid;
+  grid-template-columns: 30px 1fr;
 }
 </style>

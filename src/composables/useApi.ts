@@ -1,6 +1,6 @@
 import ky from 'ky'
-import {BASE_URL, URL_GOREST} from "../../config.ts";
-import {Product} from "@/types/types.ts";
+import {URL_GOREST} from "../../config.ts";
+import {ref} from 'vue'
 
 interface List {
   body: string
@@ -9,10 +9,9 @@ interface List {
   id: number
 }
 const api = ky.create({prefixUrl: URL_GOREST})
-const  apiSearch = ky.create({prefixUrl: BASE_URL})
 export const useApi = async (name:string, id?: string, page?: number) => {
-  let data: List[]  = []
-  let status:number = 0
+  let data = ref<List[]>([])
+  let status = ref<number>(0)
   let url = `posts?page=${page}&per_page=9`
   if(name !== '' && name) {
     url = `posts?page=${page}&per_page=9`
@@ -21,9 +20,9 @@ export const useApi = async (name:string, id?: string, page?: number) => {
     url = `posts/${parseInt(id)}`
   }
   try {
-    const res = await api.get(url,{})
-                status = res.status
-                data = await res.json<List[]>()
+    const res = await api.get(url)
+                status.value = res.status
+                data.value = await res.json<List[]>()
   } catch (error) {
     console.log('Не поступили данные')
     throw new Error('Что-то пошло не так')
@@ -31,15 +30,5 @@ export const useApi = async (name:string, id?: string, page?: number) => {
   return Promise.resolve({data: data, status:status})
 }
 
-export const useSearchData = async (name: string) => {
-  let data: Product[] = []
-  try {
-    const res = await apiSearch.get('posts/', {searchParams: {
-      title: name
-      }})
-    data = await res.json<Product[]>()
-  } catch (err) {
-    console.log(err)
-  }
-  return data
-}
+
+

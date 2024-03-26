@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import NavParts from "@/components/Nav/NavParts.vue";
+import NavParts from "@/components/Home/HomeParts.vue";
 </script>
 
 <style scoped></style>

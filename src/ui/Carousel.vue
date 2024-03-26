@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 // @ts-ignore
-import { images } from "../helpers/pathToImg";
+import {images} from "../helpers/helpersData.ts";
 </script>
 
 <style scoped>
