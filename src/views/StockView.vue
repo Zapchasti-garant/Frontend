@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import NavStock from "@/components/Nav/NavStock.vue";
+import NavStock from "@/components/Home/HomeStock.vue";
 </script>
 
 <style scoped></style>

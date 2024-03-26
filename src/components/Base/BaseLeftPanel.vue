@@ -4,7 +4,7 @@
       <v-list-item class="text-center list-title">На складе</v-list-item>
     </v-list>
     <v-list v-model:opened="open">
-      <v-list-group value="Admin">
+      <v-list-group value="itemsTop">
         <template v-slot:activator="{ props }">
           <v-list-item
             class="list-item"
@@ -15,12 +15,12 @@
           ></v-list-item>
         </template>
 
-        <BaseLeftPanelItem :list="slot1"/>
+        <BaseLeftPanelItem :list="itemsTopList"/>
       </v-list-group>
 
     </v-list>
     <v-list v-model:opened="open2">
-      <v-list-group value="Admin" class="list-group">
+      <v-list-group value="itemsBottom" class="list-group">
         <template v-slot:activator="{ props }">
           <v-list-item
             class="list-item"
@@ -33,32 +33,26 @@
         </template>
 
 
-        <BaseLeftPanelItem :list="slot2"/>
+        <BaseLeftPanelItem :list="itemsBottomList"/>
       </v-list-group>
     </v-list>
     <v-list>
-      <BaseLeftPanelItem :list="items" :class="bottomClass"/>
+      <BaseLeftPanelItem :list="itemsBottom" :class="bottomClass"/>
     </v-list>
   </v-card>
 </template>
 
 <script setup lang="ts">
-import BaseLeftPanelItem from "@/components/Base/BaseLeftPanelItem.vue";
+import BaseLeftPanelItem from "@/components/Home/HomeLeftPanelItem.vue";
 import {ref} from "vue";
+import {itemsBottom, itemsBottomList, itemsTopList} from "@/helpers/helpersData.ts";
 
-const open = ref(["Users"]);
-const open2 = ref(["Users"]);
+
+const open = ref(["items"]);
+const open2 = ref(["items"]);
 
 const bottomClass = 'top-panel'
-const slot1 = ref([{name:"ТЭМ2"}, {name:"ТГМ4"}, {name:"ТГМ6"}]);
-const slot2 = ref([{name:"Д 50"}, {name:"Д211"}, {name: "Д49"}]);
-const items = ref([
-  { name: "Запчасти к гидропередаче", icon: "mdi-wrench " },
-  { name: "Запчасти к компрессорам", icon: "mdi-wrench " },
-  { name: "Электрика", icon: "mdi-battery-charging " },
-  { name: "РТИ и медные кольца", icon: "mdi-album " },
-  { name: "Фильтра и фильтрующие элименты", icon: "mdi-flag" }
-])
+
 </script>
 
 <style scoped>

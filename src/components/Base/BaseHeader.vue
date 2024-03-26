@@ -51,23 +51,19 @@
 <script setup lang="ts">
 import IconMail from "@/ui/Icon/IconMail.vue";
 import IconPhone from "@/ui/Icon/IconPhone.vue";
-import {onMounted, ref} from "vue";
-import BaseSearch from "@/components/Base/BaseSearch.vue";
-import ky from 'ky'
-import {BASE_URL} from "../../../config.ts";
+import {ref} from "vue";
+import BaseSearch from "@/components/Home/HomeSearch.vue";
 import {useStore} from "@/store/store.ts";
 
-const data = ref<T>('')
 const store = useStore()
-onMounted(async () => {
-  const res = await ky.get(BASE_URL + 'posts/')
-  data.value = res.json()
-})
+
 const inputValue = ref<string>('')
 const getList = async () => {
-  setTimeout(async () => {
-    await store.fetchSearch(inputValue.value)
-  }, 2000)
+  if(inputValue.value.length === 4) {
+    setTimeout(async () => {
+      await store.fetchSearch(inputValue.value)
+    }, 1500)
+  }
 }
 const logoIcon = ref("/img/logo.svg");
 
@@ -91,7 +87,6 @@ const logoIcon = ref("/img/logo.svg");
   &__form {
     display: flex;
     gap: 10px;
-    align-items: center;
     align-items: stretch;
   }
   &__logo {
@@ -220,7 +215,7 @@ const logoIcon = ref("/img/logo.svg");
   }
   &:hover:not(:focus-visible) {
     color: #021b2b;
-    transition: color 0.3 ease-in-out;
+    transition: color 0.3s ease-in-out;
   }
   &:active:not(:focus-visible) {
     transform: scale(0.96);
