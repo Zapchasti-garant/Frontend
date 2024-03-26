@@ -13,6 +13,7 @@ export const useSearch = async (name: string) => {
     data.value = await res.json<Product[]>()
   } catch (err) {
     console.log(err)
+    data.value = [] // Если произошла ошибка, также присваиваем пустой массив
   }
   return data
 }

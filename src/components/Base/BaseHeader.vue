@@ -61,10 +61,12 @@ const store = useStore()
 
 const inputValue = ref<string>('')
 const getList = async () => {
-  if(inputValue.value.length === 4) {
+  if(inputValue.value.length > 4) {
     setTimeout(async () => {
       await store.fetchSearch(inputValue.value)
     }, 1500)
+  } else {
+    store.clearSearch()
   }
 }
 

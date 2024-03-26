@@ -27,10 +27,23 @@ export const useStore = defineStore('store', () => {
     return listData.value.find((item) => item.id === id)
   }
   async function fetchSearch(name: string) {
-    listSearch.value = await useSearch(name)
+    const res = await useSearch(name)
+    const error = {
+      title: "Ничего не найдено, попробуйте изменить условия поиска"
+    }
+    if(res.value.length !== 0) {
+      listSearch.value = res.value
+    } else {
+      if(res.value.length === 0) {
+        listSearch.value.push(error)
+      }
+    }
   }
   function clearState() {
     listData.value = []
   }
-  return {listData,listSearch,parts,gaskets,getList,getProduct,fetchSearch,clearState}
+  function clearSearch() {
+    listSearch.value = []
+  }
+  return {listData,listSearch,parts,gaskets,getList,getProduct,fetchSearch,clearState,clearSearch}
 })
