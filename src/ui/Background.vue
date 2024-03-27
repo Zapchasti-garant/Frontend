@@ -21,7 +21,7 @@
   height: 500px;
   width: 100%;
   background-image: url("/img/img3.jpg");
-  background-position: 0 -204px;
+  background-position: 0 -198px;
   background-size: cover;
   background-repeat: no-repeat;
 }
