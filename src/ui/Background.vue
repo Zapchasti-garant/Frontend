@@ -7,11 +7,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import {ref} from "vue";
-
-const backImg = ref("/img/img3test.jpg");
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
 .carousel__wrapper {
