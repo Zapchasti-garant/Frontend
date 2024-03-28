@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <v-list-item
       v-for="(item, i) in props.list"
       :key="i"
@@ -8,30 +7,29 @@
       :title="item.name"
       :value="item"
       :prepend-icon="item.icon"
-      style="background: #1e75a0; color: #fff"
+      style="background: #1b93ce; color: #fff"
     ></v-list-item>
   </div>
 </template>
 
 <script setup lang="ts">
-
-import {defineProps, PropType} from "vue";
+import { defineProps, PropType } from "vue";
 
 interface ListItems {
-  name: string
-  icon?: string
-  class?: string
+  name: string;
+  icon?: string;
+  class?: string;
 }
 const props = defineProps({
   list: {
-    type: Array as  PropType<ListItems[]>,
-    required: true
+    type: Array as PropType<ListItems[]>,
+    required: true,
   },
   class: {
-    type:String,
-    default: () => ''
-  }
-})
+    type: String,
+    default: () => "",
+  },
+});
 </script>
 
 <style scoped>
@@ -43,16 +41,14 @@ const props = defineProps({
 .top-panel {
   border: 1px solid #01304d;
   background: #1e75a0 !important;
-  
 }
 .v-list-item {
   padding: 4px 16px 4px 16px !important;
-  display:grid;
+  display: grid;
   grid-template-columns: 30px 1fr;
 }
 .v-list-item-title {
   font-size: 14px;
   color: #9e9999;
 }
-
 </style>

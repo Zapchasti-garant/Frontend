@@ -1,2 +1,1 @@
-export const BASE_URL: string = 'https://jsonplaceholder.typicode.com/'
-export const URL_GOREST: string = 'https://gorest.co.in/public/v2/'
+export const BASE_URL: string = "http://2753315-jx09407.twc1.net:3000/";

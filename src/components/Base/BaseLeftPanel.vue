@@ -1,7 +1,9 @@
 <template>
   <v-card class="mx-auto" width="300">
     <v-list>
-      <h3 class="list-title">На складе</h3>
+      <v-list-item class="list-title">
+        <h3>На складе</h3>
+      </v-list-item>
     </v-list>
     <v-list v-model:opened="open">
       <v-list-group value="itemsTop">
@@ -43,12 +45,12 @@
 
 <script setup lang="ts">
 import BaseLeftPanelItem from "@/components/Home/HomeLeftPanelItem.vue";
-import { ref } from "vue";
 import {
   itemsBottom,
   itemsBottomList,
   itemsTopList,
 } from "@/helpers/helpersData.ts";
+import { ref } from "vue";
 
 const open = ref(["items"]);
 const open2 = ref(["items"]);
@@ -62,7 +64,7 @@ const bottomClass = "top-panel";
   padding: 7px 0px;
   border-top-right-radius: 90px;
   border-bottom-left-radius: 80px;
-background: #1e75a0;
+  background: #1e75a0;
   border: 1px solid #01304d;
   cursor: pointer;
   font-size: 18px;
@@ -114,6 +116,6 @@ background: #1e75a0;
   color: white;
 }
 .text-primary {
-  color: white!important;
+  color: white !important;
 }
 </style>

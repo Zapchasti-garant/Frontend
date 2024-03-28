@@ -3,45 +3,47 @@
     <div class="container">
       <div style="border-bottom: 2px solid #efefef"></div>
       <div class="photo">
-        <img
-          src="https://s-media-cache-ak0.pinimg.com/236x/3b/36/ca/3b36ca3afe0fa0fd4984b9eee2e154bb.jpg"
-        />
+        <img :src="props.item.img" />
       </div>
 
       <div class="description">
-        <h2>{{ props.item.title }}</h2>
+        <h2>{{ props.item.name }}</h2>
         <h4>
-          Наличие: <span class="orders">{{ props.item.body }} <span style="color: #727272;">шт.</span></span>
-        </h4> 
-        <h1>Цена {{priceFormat(props.item.id)}} ₽</h1>
-<div class="btn-wrap">
-        <button class="btn-click" @click="goToViewProduct = !goToViewProduct">Купить</button>
-        <div v-if="goToViewProduct"><span class="status">Заказать: +7 (4832) 599-242
-+7-952-963-27-24
-+7-958-646-13-77</span></div>
+          Наличие:
+          <span class="orders"
+            >{{ props.item.number }}
+            <span style="color: #727272">шт.</span></span
+          >
+        </h4>
+        <h1>Цена {{ priceFormat(props.item.price) }} ₽</h1>
+        <div class="btn-wrap">
+          <button class="btn-click" @click="goToViewProduct = !goToViewProduct">
+            Купить
+          </button>
+          <div v-if="goToViewProduct">
+            <span class="status"
+              >Заказать: +7 (4832) 599-242 +7-952-963-27-24
+              +7-958-646-13-77</span
+            >
+          </div>
 
-        <button>Каталог запчастей</button>
-      </div>
+          <button>Каталог запчастей</button>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { defineProps, PropType } from "vue";
 import priceFormat from "@/helpers/priceFormat";
+import { Product } from "@/types/types";
+import { defineProps, PropType, ref } from "vue";
 
 const goToViewProduct = ref(false);
-type List = {
-  body: string;
-  title: string;
-  user_id: string;
-  id: number;
-};
+
 const props = defineProps({
   item: {
-    type: Object as PropType<List>,
+    type: Object as PropType<Product>,
     required: true,
   },
 });
@@ -59,7 +61,7 @@ const props = defineProps({
   min-width: 500px;
   left: 0;
   top: 65%;
-  padding:0;
+  padding: 0;
   color: green;
 }
 

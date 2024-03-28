@@ -2,9 +2,8 @@
   <header class="header">
     <div class="container">
       <div class="header__wrapper">
-        <router-link class="header__logo" to="/" tabindex="0"
-          >
-              <IconAboutlogo :width="120" :height="120"  class="header__img"/>
+        <router-link class="header__logo" to="/" tabindex="0">
+          <IconAboutlogo :width="120" :height="120" class="header__img" />
           <span tabindex="-1">"Промжелснаб"</span></router-link
         >
         <div class="header__wrapper-contacts">
@@ -33,15 +32,19 @@
               </li>
             </ul>
           </nav>
-          <form class="header__form" >
+          <form class="header__form">
             <div class="header__input-wrapper" tabindex="-1">
-              <input type="text" class="header__form-input" v-model="inputValue" @input="getList" aria-label="input"/>
-              <HomeSearch class="header__list-search" tabindex="-1"/>
+              <input
+                type="text"
+                class="header__form-input"
+                v-model="inputValue"
+                @input="getList"
+                aria-label="input"
+              />
+              <HomeSearch class="header__list-search" tabindex="-1" />
             </div>
 
-            <button class="header__form-btn" type="submit">
-              Поиск
-            </button>
+            <button class="header__form-btn" type="submit">Поиск</button>
           </form>
         </div>
       </div>
@@ -50,27 +53,25 @@
 </template>
 
 <script setup lang="ts">
+import HomeSearch from "@/components/Home/HomeSearch.vue";
+import { useStore } from "@/store/store.ts";
+import IconAboutlogo from "@/ui/Icon/IconAboutlogo.vue";
 import IconMail from "@/ui/Icon/IconMail.vue";
 import IconPhone from "@/ui/Icon/IconPhone.vue";
-import {ref} from "vue";
-import HomeSearch from "@/components/Home/HomeSearch.vue";
-import {useStore} from "@/store/store.ts";
-import IconAboutlogo from "@/ui/Icon/IconAboutlogo.vue";
+import { ref } from "vue";
 
-const store = useStore()
+const store = useStore();
 
-const inputValue = ref<string>('')
+const inputValue = ref<string>("");
 const getList = async () => {
-  if(inputValue.value.length > 4) {
+  if (inputValue.value.length > 3) {
     setTimeout(async () => {
-      await store.fetchSearch(inputValue.value)
-    }, 1500)
+      await store.fetchSearch(inputValue.value);
+    }, 1500);
   } else {
-    store.clearSearch()
+    store.clearSearch();
   }
-}
-
-
+};
 </script>
 
 <style scoped lang="scss">
@@ -243,7 +244,6 @@ const getList = async () => {
   outline: none;
   color: #023859;
 }
-
 
 .form ::placeholder {
   color: #023859;
