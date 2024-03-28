@@ -13,9 +13,9 @@
               <li class="navigation__item" tabindex="-1">О компании</li>
             </router-link>
             <router-link
-              :to="{ name: 'news' }"
+              :to="{ name: 'parts' }"
               class="navigation__link"
-              :class="{ isActive: route.path === '/news' }"
+              :class="{ isActive: route.path === '/parts' }"
             >
               <li class="navigation__item">Запчасти</li>
             </router-link>
