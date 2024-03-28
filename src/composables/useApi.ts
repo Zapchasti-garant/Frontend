@@ -1,34 +1,27 @@
-import ky from 'ky'
-import {URL_GOREST} from "../../config.ts";
-import {ref} from 'vue'
+import { Product } from "@/types/types.ts";
+import ky from "ky";
+import { ref } from "vue";
+import { BASE_URL } from "../../config.ts";
 
-interface List {
-  body: string
-  title: string
-  user_id: string
-  id: number
-}
-const api = ky.create({prefixUrl: URL_GOREST})
-export const useApi = async (name:string, id?: string, page?: number) => {
-  let data = ref<List[]>([])
-  let status = ref<number>(0)
-  let url = `posts?page=${page}&per_page=9`
-  if(name !== '' && name) {
-    url = `posts?page=${page}&per_page=9`
+const api = ky.create({ prefixUrl: BASE_URL });
+export const useApi = async (name: string, id?: string, page?: number) => {
+  let data = ref<Product[]>([]);
+  let status = ref<number>(0);
+  let url = `product?limit=${page}&offset=9`;
+  if (name !== "" && name) {
+    url = `posts?limit=${page}&offset=9`;
   }
-  if(id !== '' && id) {
-    url = `posts/${parseInt(id)}`
+  if (id !== "" && id) {
+    url = `product/id?id==${id}`;
   }
   try {
-    const res = await api.get(url)
-                status.value = res.status
-                data.value = await res.json<List[]>()
+    const res = await api.get(url);
+    status.value = res.status;
+    data.value = await res.json<Product[]>();
+    console.log(data.value);
   } catch (error) {
-    console.log('Не поступили данные')
-    throw new Error('Что-то пошло не так')
+    console.log("Не поступили данные");
+    throw new Error("Что-то пошло не так");
   }
-  return Promise.resolve({data: data, status:status})
-}
-
-
-
+  return Promise.resolve({ data: data, status: status });
+};
