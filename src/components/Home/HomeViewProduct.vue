@@ -9,25 +9,31 @@
       <div class="description">
         <h2>{{ props.item.name }}</h2>
         <h4>
-          Наличие:
+          Наличие на складе:
           <span class="orders"
             >{{ props.item.number }}
             <span style="color: #727272">шт.</span></span
           >
         </h4>
-        <h1>Цена {{ priceFormat(props.item.price) }} ₽</h1>
+        <h1>Цена: {{ priceFormat(props.item.price) }} ₽</h1>
         <div class="btn-wrap">
           <button class="btn-click" @click="goToViewProduct = !goToViewProduct">
             Купить
           </button>
-          <div v-if="goToViewProduct">
-            <span class="status"
-              >Заказать: +7 (4832) 599-242 +7-952-963-27-24
-              +7-958-646-13-77</span
+          <Transition name="fade"> <div v-if="goToViewProduct">
+            <div class="status">
+              <ul class="list-reset list">
+          
+                <li class="item"><IconPhone :width="20" :height="20"/>+7 (4832) 599-242</li>
+                <li class="item"><IconPhone :width="20" :height="20" />+7-952-963-27-24</li>
+                <li class="item"><IconPhone :width="20" :height="20"/>+7-958-646-13-77</li>
+                 
+              
+            </ul> 
+              </div
             >
-          </div>
+          </div></Transition>
 
-          <button>Каталог запчастей</button>
         </div>
       </div>
     </div>
@@ -38,6 +44,7 @@
 import priceFormat from "@/helpers/priceFormat";
 import { Product } from "@/types/types";
 import { defineProps, PropType, ref } from "vue";
+import IconPhone from "@/ui/Icon/IconPhone.vue";
 
 const goToViewProduct = ref(false);
 
@@ -53,17 +60,17 @@ const props = defineProps({
 .btn-wrap {
   display: flex;
   position: relative;
+  gap: 50px;
+  width: 100%;
 }
 
-.status {
-  content: "";
-  position: absolute;
-  min-width: 500px;
-  left: 0;
-  top: 65%;
-  padding: 0;
-  color: green;
+.list {
+display: flex;
+flex-direction: column;
+gap: 5px;
+justify-content: center;
 }
+
 
 .orders {
   color: green;
@@ -88,24 +95,28 @@ const props = defineProps({
   border-left: 2px solid #efefef;
 
   h1 {
-    padding-bottom: 10px;
+    margin: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #efefef;
     color: #515151;
     font-weight: 300;
-    padding-top: 15px;
-    margin: 0;
-    font-size: 30px;
+    font-size: 24px;
     font-weight: 300;
   }
 
   h2 {
-    color: #515151;
     margin: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #efefef;
+    color: #515151;
     text-transform: uppercase;
     font-weight: 500;
   }
 
   h4 {
     margin: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #efefef;
     color: #727272;
     text-transform: uppercase;
     font-weight: 500;
@@ -126,14 +137,14 @@ const props = defineProps({
     background: none;
     border: 1px solid #d9d9d9;
     padding: 8px 15px;
-    margin-bottom: 30px;
     color: #515151;
     text-transform: uppercase;
+    height: 40px;
     min-width: 125px;
     font-family: inherit;
-    margin-right: 5px;
     transition: all 0.3s ease;
     font-weight: 500;
+    transform: translateY(20px);
 
     &:hover {
       background: rgb(146, 238, 146);
@@ -142,5 +153,6 @@ const props = defineProps({
       cursor: pointer;
     }
   }
+
 }
 </style>
