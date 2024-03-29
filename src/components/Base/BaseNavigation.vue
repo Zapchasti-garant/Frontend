@@ -20,9 +20,9 @@
               <li class="navigation__item">Запчасти</li>
             </router-link>
             <router-link
-              :to="{ name: 'offers' }"
+              :to="{ name: 'stock' }"
               class="navigation__link"
-              :class="{ isActive: route.path === '/offers' }"
+              :class="{ isActive: route.path === '/stock' }"
             >
               <li class="navigation__item">На складе</li>
             </router-link>

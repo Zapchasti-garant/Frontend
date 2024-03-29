@@ -7,31 +7,49 @@ const routes: RouteRecordRaw[] = [
     path: "/",
     name: "home",
     component: () => import("@/views/AboutView.vue"),
+    meta: {
+      title: "Главная",
+    },
   },
   {
     path: "/contacts",
     name: "contacts",
     component: () => import("@/views/ContactsView.vue"),
+    meta: {
+      title: "Контакты",
+    },
   },
   {
     path: "/dillers",
     name: "dillers",
     component: () => import("@/views/DillerView.vue"),
+    meta: {
+      title: "Дилерская продукция",
+    },
+  },
+  {
+    path: "/stock",
+    name: "stock",
+    component: () => import("@/views/StockView.vue"),
+    meta: {
+      title: "На складе",
+    },
   },
   {
     path: "/parts",
     name: "parts",
     component: () => import("@/views/PartsView.vue"),
-  },
-  {
-    path: "/offers",
-    name: "offers",
-    component: () => import("@/views/StockView.vue"),
+    meta: {
+      title: "Запчасти",
+    },
   },
   {
     path: "/product/:id",
     name: "product",
     component: () => import("@/views/ProductView.vue"),
+    meta: {
+      title: "",
+    },
   },
 ];
 

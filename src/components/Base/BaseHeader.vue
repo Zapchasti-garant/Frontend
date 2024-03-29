@@ -44,7 +44,13 @@
               <HomeSearch class="header__list-search" tabindex="-1" />
             </div>
 
-            <button class="header__form-btn" type="submit">Поиск</button>
+            <button
+              class="header__form-btn"
+              type="button"
+              @click.prevent="goToPageSearch"
+            >
+              Поиск
+            </button>
           </form>
         </div>
       </div>
@@ -59,8 +65,18 @@ import IconAboutlogo from "@/ui/Icon/IconAboutlogo.vue";
 import IconMail from "@/ui/Icon/IconMail.vue";
 import IconPhone from "@/ui/Icon/IconPhone.vue";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
+const $router = useRouter();
 const store = useStore();
+
+const goToPageSearch = () => {
+  store.pageSearch();
+  $router.push({ path: "/parts" });
+  window.scrollTo(0, 200);
+  store.clearSearch();
+  inputValue.value = "";
+};
 
 const inputValue = ref<string>("");
 const getList = async () => {

@@ -20,9 +20,9 @@ export const useStore = defineStore("store", () => {
   });
 
   async function getList(id?: string, view?: string) {
-    if(view) {
+    if (view) {
       const res = await useApi(id, view);
-      if('data' in res) {
+      if ("data" in res) {
         if (res.status === 200 || res.status === 201) {
           listData.value = res.data;
           // this.parts =  data.filter((item: List) => item.category === '3')
@@ -31,9 +31,13 @@ export const useStore = defineStore("store", () => {
       }
     }
   }
+
+  function pageSearch() {
+    listData.value = listSearch.value;
+  }
   async function getProduct(id: string) {
-    const res = await useApi(id, '');
-    if('product' in res) {
+    const res = await useApi(id, "");
+    if ("product" in res) {
       product.value = res.product;
     }
   }
@@ -68,6 +72,7 @@ export const useStore = defineStore("store", () => {
     clearState,
     clearSearch,
     totalPages,
-    product
+    product,
+    pageSearch,
   };
 });
