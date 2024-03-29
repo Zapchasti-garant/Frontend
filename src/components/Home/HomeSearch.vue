@@ -23,7 +23,7 @@ const store = useStore();
 const listSearch = computed(() => store.listSearch as Product[]);
 
 const goToViewProduct = async (id: string) => {
-  if (route.path.includes('/product')) {
+  if (route.path.includes("/product")) {
     await store.getProduct(id);
     store.clearSearch();
   } else {

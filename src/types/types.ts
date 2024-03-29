@@ -5,5 +5,4 @@ export type Product = {
   number: string;
   name: string;
   price: string;
-  count: number;
 };

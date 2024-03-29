@@ -6,12 +6,12 @@ import { BASE_URL } from "../../config.ts";
 type Response = {
   rows: Product[];
   count: number;
-}
+};
 const api = ky.create({ prefixUrl: BASE_URL });
-export const useApi = async ( id?: string, page?: string) => {
+export const useApi = async (id?: string, page?: string) => {
   const data = ref<Response>({
     rows: [],
-    count: 0
+    count: 0,
   });
   const status = ref<number>(0);
   const product = ref<Product>({
@@ -21,8 +21,8 @@ export const useApi = async ( id?: string, page?: string) => {
     number: "",
     name: "",
     price: "",
-  })
-  if(page !== "" && page) {
+  });
+  if (page !== "" && page) {
     const res = await api.get(`product/limit?limit=9&offset=${page}`);
     status.value = res.status;
     data.value = await res.json<Response>();
@@ -36,7 +36,7 @@ export const useApi = async ( id?: string, page?: string) => {
 
   if (id) {
     return Promise.resolve({ product: product.value, status: status.value });
- } else {
-    return Promise.resolve({data: data.value.rows,status: status.value});
- }
+  } else {
+    return Promise.resolve({ data: data.value.rows, status: status.value });
+  }
 };
