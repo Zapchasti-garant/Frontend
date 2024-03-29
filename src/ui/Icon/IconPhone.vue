@@ -4,6 +4,8 @@
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 997.000000 1280.000000"
     preserveAspectRatio="xMidYMid meet"
+    :width="props.width"
+    :height="props.height"
   >
     <metadata>
       Created by potrace 1.15, written by Peter Selinger 2001-2017
@@ -44,6 +46,19 @@ c88 50 385 220 660 377 275 158 512 299 528 314 41 38 76 95 98 160 22 63 26
   </svg>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { defineProps } from "vue";
+
+const props = defineProps({
+  width: {
+    type: Number,
+    default: 48,
+  },
+  height: {
+    type: Number,
+    default: 48,
+  },
+});
+</script>
 
 <style scoped></style>
