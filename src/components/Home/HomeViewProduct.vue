@@ -3,19 +3,18 @@
     <div class="container">
       <div style="border-bottom: 2px solid #efefef"></div>
       <div class="photo">
-        <img :src="props.item.img" />
+        <img :src="item.img" />
       </div>
 
       <div class="description">
-        <h2>{{ props.item.name }}</h2>
+        <h2>{{ item.name }}</h2>
         <h4>
           Наличие:
           <span class="orders"
-            >{{ props.item.number }}
-            <span style="color: #727272">шт.</span></span
+            >{{ item.number }} <span style="color: #727272">шт.</span></span
           >
         </h4>
-        <h1>Цена {{ priceFormat(props.item.price) }} ₽</h1>
+        <h1>Цена {{ priceFormat(item.price) }} ₽</h1>
         <div class="btn-wrap">
           <button class="btn-click" @click="goToViewProduct = !goToViewProduct">
             Купить
@@ -36,17 +35,14 @@
 
 <script setup lang="ts">
 import priceFormat from "@/helpers/priceFormat";
+import { useStore } from "@/store/store";
 import { Product } from "@/types/types";
-import { defineProps, PropType, ref } from "vue";
+import { computed, ref } from "vue";
 
+const store = useStore();
 const goToViewProduct = ref(false);
 
-const props = defineProps({
-  item: {
-    type: Object as PropType<Product>,
-    required: true,
-  },
-});
+const item = computed(() => store.product as Product);
 </script>
 
 <style scoped lang="scss">

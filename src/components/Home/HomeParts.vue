@@ -51,12 +51,12 @@ const listData = computed(() => {
 const store = useStore();
 const page = ref<number>(1);
 const changeView = async (view: number) => {
-  await store.getList("", "", view);
+  await store.getList( "", view.toString());
 };
 onMounted(async () => {
   loadSkeleton.value = true;
   try {
-    await store.getList("", "", page.value);
+    await store.getList("", page.value.toString());
   } catch (err) {
     console.log(err);
   }

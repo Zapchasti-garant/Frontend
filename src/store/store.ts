@@ -9,17 +9,33 @@ export const useStore = defineStore("store", () => {
   const parts = ref<Product[]>([]);
   const gaskets = ref<Product[]>([]);
   const listSearch = ref<any>([]);
+  const totalPages = ref<number>(0);
+  const product = ref<Product>({
+    category: "",
+    id: "",
+    img: "",
+    number: "",
+    name: "",
+    price: "",
+  });
 
-  async function getList(name: string, id?: string, view?: number) {
-    const { data, status } = await useApi(name, id, view);
-    if (status.value === 200 || status.value === 201) {
-      listData.value = data.value;
-      // this.parts =  data.filter((item: List) => item.category === '3')
-      // this.gaskets = data.filter((item) => item.category === '2')
+  async function getList(id?: string, view?: string) {
+    if(view) {
+      const res = await useApi(id, view);
+      if('data' in res) {
+        if (res.status === 200 || res.status === 201) {
+          listData.value = res.data;
+          // this.parts =  data.filter((item: List) => item.category === '3')
+          // this.gaskets = data.filter((item) => item.category === '2')
+        }
+      }
     }
   }
-  function getProduct(id: string) {
-    return listData.value.find((item) => item.id === id);
+  async function getProduct(id: string) {
+    const res = await useApi(id, '');
+    if('product' in res) {
+      product.value = res.product;
+    }
   }
   async function fetchSearch(name: string) {
     const res = await useSearch(name);
@@ -51,5 +67,7 @@ export const useStore = defineStore("store", () => {
     fetchSearch,
     clearState,
     clearSearch,
+    totalPages,
+    product
   };
 });

@@ -15,15 +15,21 @@
 import { useStore } from "@/store/store.ts";
 import { Product } from "@/types/types.ts";
 import { computed } from "vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
+const route = useRoute();
 const $router = useRouter();
 const store = useStore();
 const listSearch = computed(() => store.listSearch as Product[]);
 
-const goToViewProduct = (id: string) => {
-  $router.push({ name: "product", params: { id } });
-  store.clearSearch();
+const goToViewProduct = async (id: string) => {
+  if (route.path.includes('/product')) {
+    await store.getProduct(id);
+    store.clearSearch();
+  } else {
+    $router.push({ name: "product", params: { id } });
+    store.clearSearch();
+  }
 };
 </script>
 
