@@ -50,7 +50,7 @@
             aria-label="Дмитрий"
             class="footer__community-link"
           >
-            <li class="footer__item">Дмитрий</li></a
+            <li class="footer__item">Дмитрий  </li></a
           >
 
         </ul>
@@ -111,6 +111,7 @@ text-underline-offset: 3px;
   text-decoration: underline;
   font-size: 12px;
   color: white;
+  outline: none;
 }
   &__social {
     display: flex;
