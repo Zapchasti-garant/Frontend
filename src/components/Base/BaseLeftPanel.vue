@@ -38,7 +38,7 @@
       </v-list-group>
     </v-list>
     <v-list>
-      <BaseLeftPanelItem :list="itemsBottom" :class="bottomClass" />
+      <BaseLeftPanelItem :list="itemsBottom" :class="bottomClass" tabindex='0'/>
     </v-list>
   </v-card>
 </template>
@@ -46,9 +46,9 @@
 <script setup lang="ts">
 import BaseLeftPanelItem from "@/components/Home/HomeLeftPanelItem.vue";
 import {
-  itemsBottom,
-  itemsBottomList,
-  itemsTopList,
+itemsBottom,
+itemsBottomList,
+itemsTopList,
 } from "@/helpers/helpersData.ts";
 import { ref } from "vue";
 

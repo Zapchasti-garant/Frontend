@@ -1,23 +1,34 @@
 <template>
   <div>
-    <BaseViewProduct :item="oneItem" />
+    <HomeViewProduct />
   </div>
 </template>
 
 <script setup lang="ts">
-import BaseViewProduct from "@/components/Home/HomeViewProduct.vue";
+import HomeViewProduct from "@/components/Home/HomeViewProduct.vue";
 import { useStore } from "@/store/store.ts";
+import { onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 
-const route = useRoute();
-const itemId = Array.isArray(route.params.id)
-  ? route.params.id[0]
-  : route.params.id;
-// Преобразуем itemId в число, если это возможно
-const itemIdNew = itemId.toString();
 const store = useStore();
 
-const oneItem: any = store.getProduct(itemIdNew);
+const route = useRoute();
+onMounted(async () => {
+  const itemId = Array.isArray(route.params.id)
+    ? route.params.id[0]
+    : route.params.id;
+  const itemIdNew = itemId.toString();
+  await store.getProduct(itemIdNew);
+});
+
+watch(
+  () => route.params.id,
+  async (newVal) => {
+    const id = Array.isArray(newVal) ? newVal[0] : newVal;
+    const itemIdNew = id.toString();
+    await store.getProduct(itemIdNew);
+  }
+);
 </script>
 
 <style scoped></style>

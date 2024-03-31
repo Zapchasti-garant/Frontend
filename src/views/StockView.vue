@@ -1,11 +1,11 @@
 <template>
   <div>
-    <NavStock />
+    <HomeStock />
   </div>
 </template>
 
 <script setup lang="ts">
-import NavStock from "@/components/Home/HomeStock.vue";
+import HomeStock from "@/components/Home/HomeStock.vue";
 </script>
 
 <style scoped></style>

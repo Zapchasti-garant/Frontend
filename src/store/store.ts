@@ -9,22 +9,46 @@ export const useStore = defineStore("store", () => {
   const parts = ref<Product[]>([]);
   const gaskets = ref<Product[]>([]);
   const listSearch = ref<any>([]);
+  const totalPages = ref<number>(0);
+  const product = ref<Product>({
+    category: "",
+    id: "",
+    img: "",
+    number: "",
+    name: "",
+    price: "",
+  });
+  const flag = ref<boolean>(false);
 
-  async function getList(name: string, id?: string, view?: number) {
-    const { data, status } = await useApi(name, id, view);
-    if (status.value === 200 || status.value === 201) {
-      listData.value = data.value;
-      // this.parts =  data.filter((item: List) => item.category === '3')
-      // this.gaskets = data.filter((item) => item.category === '2')
+  async function getList(id?: string, view?: string) {
+    if (view) {
+      const res = await useApi(id, view);
+      if ("rows" in res) {
+        if (res.status === 200 || res.status === 201) {
+          console.log("Данные", res);
+          listData.value = res.rows;
+          totalPages.value = res.pages;
+          // this.parts =  data.filter((item: List) => item.category === '3')
+          // this.gaskets = data.filter((item) => item.category === '2')
+        }
+      }
     }
   }
-  function getProduct(id: string) {
-    return listData.value.find((item) => item.id === id);
+
+  function pageSearch() {
+    totalPages.value = Math.ceil(listSearch.value.length / 9);
+    listData.value = listSearch.value;
+  }
+  async function getProduct(id: string) {
+    const res = await useApi(id, "");
+    if ("product" in res) {
+      product.value = res.product;
+    }
   }
   async function fetchSearch(name: string) {
     const res = await useSearch(name);
     const error = {
-      title: "Ничего не найдено, попробуйте изменить условия поиска",
+      name: "Ничего не найдено, попробуйте изменить условия поиска",
     };
     if (res.value.length !== 0) {
       listSearch.value = res.value;
@@ -37,6 +61,7 @@ export const useStore = defineStore("store", () => {
   }
   function clearState() {
     listData.value = [];
+    totalPages.value = 0;
   }
   function clearSearch() {
     listSearch.value = [];
@@ -51,5 +76,9 @@ export const useStore = defineStore("store", () => {
     fetchSearch,
     clearState,
     clearSearch,
+    totalPages,
+    product,
+    flag,
+    pageSearch,
   };
 });

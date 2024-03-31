@@ -21,9 +21,11 @@ const $router = useRouter();
 const store = useStore();
 const listSearch = computed(() => store.listSearch as Product[]);
 
-const goToViewProduct = (id: string) => {
+const emit = defineEmits(["submitForm"]);
+const goToViewProduct = async (id: string) => {
+  emit("submitForm", false);
+  await store.getProduct(id);
   $router.push({ name: "product", params: { id } });
-  store.clearSearch();
 };
 </script>
 

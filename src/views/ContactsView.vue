@@ -1,11 +1,11 @@
 <template>
   <div>
-    <NavContacts />
+    <HomeContacts />
   </div>
 </template>
 
 <script setup lang="ts">
-import NavContacts from "@/components/Home/HomeContacts.vue";
+import HomeContacts from "@/components/Home/HomeContacts.vue";
 </script>
 
 <style scoped></style>

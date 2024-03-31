@@ -1,11 +1,11 @@
 <template>
   <div>
-    <NavDiller />
+    <HomeDiller />
   </div>
 </template>
 
 <script setup lang="ts">
-import NavDiller from "@/components/Home/HomeDiller.vue";
+import HomeDiller from "@/components/Home/HomeDiller.vue";
 </script>
 
 <style scoped></style>

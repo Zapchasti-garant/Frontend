@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-list-item
+    tabindex='0'
       v-for="(item, i) in props.list"
       :key="i"
       :class="props.class"

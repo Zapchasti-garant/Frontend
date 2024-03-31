@@ -1,11 +1,11 @@
 <template>
   <div>
-    <NavAbout />
+    <HomeAbout />
   </div>
 </template>
 
 <script setup lang="ts">
-import NavAbout from "@/components/Home/HomeAbout.vue";
+import HomeAbout from "@/components/Home/HomeAbout.vue";
 </script>
 
 <style scoped></style>

@@ -14,18 +14,12 @@
         <v-card-title>
           {{ item.name }}
         </v-card-title>
-        <v-card-subtitle>
+        <v-card-subtitle style="padding-top: 15px; padding-bottom: 15px">
           Наличие на складе: {{ item.number }}
         </v-card-subtitle>
       </v-card>
     </div>
-    <div class="wrapper__pagination">
-      <v-pagination
-        :length="4"
-        v-model="page"
-        @click="changeView(page)"
-      ></v-pagination>
-    </div>
+    <HomePagination />
   </section>
 </template>
 
@@ -33,9 +27,10 @@
 import { useStore } from "@/store/store.ts";
 import { computed, onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
+import HomePagination from "./HomePagination.vue";
 
+const store = useStore();
 const $router = useRouter();
-
 const loadSkeleton = ref(true);
 const goToViewProduct = (id: string) => {
   $router.push({ name: "product", params: { id } });
@@ -46,17 +41,21 @@ const loader = () => {
 };
 
 const listData = computed(() => {
+  if (store.listSearch.length !== 0) {
+    return store.listSearch;
+  }
   return store.listData;
 });
-const store = useStore();
-const page = ref<number>(1);
-const changeView = async (view: number) => {
-  await store.getList("", "", view);
-};
+
 onMounted(async () => {
   loadSkeleton.value = true;
+  console.log(store.listSearch);
+  if (store.flag) {
+    store.flag = false;
+    return;
+  }
   try {
-    await store.getList("", "", page.value);
+    await store.getList("", "1");
   } catch (err) {
     console.log(err);
   }
@@ -71,8 +70,5 @@ onMounted(async () => {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-}
-.wrapper__pagination {
-  padding: 20px 0;
 }
 </style>
