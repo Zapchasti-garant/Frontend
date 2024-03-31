@@ -34,8 +34,8 @@
                   </li>
                 </ul>
               </div>
-            </div></Transition
-          >
+            </div>
+          </Transition>
         </div>
       </div>
     </div>
@@ -46,12 +46,14 @@
 import priceFormat from "@/helpers/priceFormat";
 import { useStore } from "@/store/store";
 import { Product } from "@/types/types";
-import { computed, ref } from "vue";
 import IconPhone from "@/ui/Icon/IconPhone.vue";
+import { computed, onBeforeUnmount, ref } from "vue";
 
+onBeforeUnmount(() => {
+  store.flag = false;
+});
 const store = useStore();
 const goToViewProduct = ref(false);
-
 const item = computed(() => store.product as Product);
 </script>
 

@@ -12,7 +12,16 @@
             <template v-slot:title="{ item }">
               {{ item.title.toUpperCase() }}
             </template>
+            <a @click.prevent="reload" href="#" class="main__reload">
+              <v-icon
+                icon="mdi-reload"
+                size="small"
+                style="margin-right: 3px"
+              ></v-icon
+              >Обновить
+            </a>
           </v-breadcrumbs>
+
           <router-view v-slot="{ Component }">
             <transition name="fade" mode="out-in">
               <component :is="Component" />
@@ -55,8 +64,10 @@ watch(
   () => route.path,
   (newVal) => {
     const corrTitle = route.meta.title;
-    if (newVal === "/") {
+    if (newVal !== "/parts") {
       store.clearState();
+    }
+    if (newVal === "/") {
       breadcrumbs.value = [
         {
           title: "Главная",
@@ -82,6 +93,10 @@ watch(
     showCarousel.value = newVal === "/";
   }
 );
+const reload = () => {
+  console.log("reload");
+  window.location.reload();
+};
 </script>
 
 <style lang="scss">
@@ -131,5 +146,12 @@ watch(
   &:hover {
     text-decoration: underline;
   }
+}
+.main__reload {
+  margin-left: 20px;
+  color: #000;
+  font-size: 16px;
+  text-decoration: underline;
+  font-weight: 400;
 }
 </style>

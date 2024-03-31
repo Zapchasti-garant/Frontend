@@ -37,6 +37,10 @@ export const useApi = async (id?: string, page?: string) => {
   if (id) {
     return Promise.resolve({ product: product.value, status: status.value });
   } else {
-    return Promise.resolve({ data: data.value.rows, status: status.value });
+    return Promise.resolve({
+      rows: data.value.rows,
+      status: status.value,
+      pages: data.value.count,
+    });
   }
 };

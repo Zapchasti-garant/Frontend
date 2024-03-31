@@ -10,7 +10,7 @@
           <nav class="header__nav">
             <ul class="header__list list-reset">
               <li class="header__item">
-                <a href="mailto:1234353534@uandex.ru" class="header__link">
+                <a href="mailto:pjs-bryansk@yandex.ru" class="header__link">
                   <IconMail /> pjs-bryansk@yandex.ru</a
                 >
                 <img src="" alt="" />
@@ -41,7 +41,11 @@
                 @input="getList"
                 aria-label="input"
               />
-              <HomeSearch class="header__list-search" tabindex="-1" />
+              <HomeSearch
+                class="header__list-search"
+                tabindex="-1"
+                @submit-form="goToPageSearch"
+              />
             </div>
 
             <button
@@ -64,26 +68,35 @@ import { useStore } from "@/store/store.ts";
 import IconAboutlogo from "@/ui/Icon/IconAboutlogo.vue";
 import IconMail from "@/ui/Icon/IconMail.vue";
 import IconPhone from "@/ui/Icon/IconPhone.vue";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
 
 const $router = useRouter();
 const store = useStore();
-
-const goToPageSearch = () => {
-  store.pageSearch();
-  $router.push({ path: "/parts" });
-  window.scrollTo(0, 200);
-  store.clearSearch();
-  inputValue.value = "";
-};
-
 const inputValue = ref<string>("");
+const goToPageSearch = () => {
+  $router.push({ path: "/parts" });
+  store.pageSearch();
+  inputValue.value = "";
+  window.scrollTo({
+    top: 700,
+    behavior: "smooth",
+  });
+  store.flag = true;
+};
+watch(
+  () => inputValue.value.length,
+  (newValue) => {
+    if (newValue < 3) {
+      store.clearSearch();
+    }
+  }
+);
 const getList = async () => {
   if (inputValue.value.length > 3) {
     setTimeout(async () => {
       await store.fetchSearch(inputValue.value);
-    }, 1500);
+    }, 300);
   } else {
     store.clearSearch();
   }

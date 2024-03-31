@@ -18,13 +18,16 @@ export const useStore = defineStore("store", () => {
     name: "",
     price: "",
   });
+  const flag = ref<boolean>(false);
 
   async function getList(id?: string, view?: string) {
     if (view) {
       const res = await useApi(id, view);
-      if ("data" in res) {
+      if ("rows" in res) {
         if (res.status === 200 || res.status === 201) {
-          listData.value = res.data;
+          console.log("Данные", res);
+          listData.value = res.rows;
+          totalPages.value = res.pages;
           // this.parts =  data.filter((item: List) => item.category === '3')
           // this.gaskets = data.filter((item) => item.category === '2')
         }
@@ -33,6 +36,7 @@ export const useStore = defineStore("store", () => {
   }
 
   function pageSearch() {
+    totalPages.value = Math.ceil(listSearch.value.length / 9);
     listData.value = listSearch.value;
   }
   async function getProduct(id: string) {
@@ -44,7 +48,7 @@ export const useStore = defineStore("store", () => {
   async function fetchSearch(name: string) {
     const res = await useSearch(name);
     const error = {
-      title: "Ничего не найдено, попробуйте изменить условия поиска",
+      name: "Ничего не найдено, попробуйте изменить условия поиска",
     };
     if (res.value.length !== 0) {
       listSearch.value = res.value;
@@ -57,6 +61,7 @@ export const useStore = defineStore("store", () => {
   }
   function clearState() {
     listData.value = [];
+    totalPages.value = 0;
   }
   function clearSearch() {
     listSearch.value = [];
@@ -73,6 +78,7 @@ export const useStore = defineStore("store", () => {
     clearSearch,
     totalPages,
     product,
+    flag,
     pageSearch,
   };
 });
