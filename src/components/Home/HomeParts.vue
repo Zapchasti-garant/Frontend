@@ -63,7 +63,9 @@ const listData = computed(() => {
 });
 const changePage = (page: string) => {
   currentPage.value = page;
+  console.log(currentPage.value);
 };
+
 onActivated(async () => {
   await store.getList("", currentPage.value);
 });
