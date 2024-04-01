@@ -34,6 +34,7 @@ const goToViewProduct = async (id: string) => {
   border-bottom: 1px solid grey;
   cursor: pointer;
   transition: background 0.3s ease;
+
   &:last-child {
     border-bottom: none;
   }
@@ -46,5 +47,7 @@ const goToViewProduct = async (id: string) => {
   padding-bottom: 10px;
   flex-direction: column;
   gap: 10px;
+  max-height: 20em;
+  overflow-y: auto;
 }
 </style>

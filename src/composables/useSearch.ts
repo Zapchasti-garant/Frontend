@@ -8,12 +8,14 @@ export const useSearch = async (name: string) => {
   const data = ref<Product[]>([]);
   const encodedName =
     name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
-  try {
-    const res = await apiSearch.get(`product/name?name=${encodedName}`);
-    console.log(res);
-    data.value = await res.json<Product[]>();
-  } catch (err) {
-    data.value = [];
+  if (name.length > 3) {
+    try {
+      const res = await apiSearch.get(`product/name?name=${encodedName}`);
+      data.value = await res.json<Product[]>();
+    } catch (err) {
+      data.value = [];
+    }
   }
+
   return data;
 };

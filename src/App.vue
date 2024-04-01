@@ -12,19 +12,13 @@
             <template v-slot:title="{ item }">
               {{ item.title.toUpperCase() }}
             </template>
-            <a @click.prevent="reload" href="#" class="main__reload">
-              <v-icon
-                icon="mdi-reload"
-                size="small"
-                style="margin-right: 3px"
-              ></v-icon
-              >Обновить
-            </a>
           </v-breadcrumbs>
 
           <router-view v-slot="{ Component }">
             <transition name="fade" mode="out-in">
-              <component :is="Component" />
+              <KeepAlive name="PartsView">
+                <component :is="Component" />
+              </KeepAlive>
             </transition>
           </router-view>
         </div>
@@ -93,10 +87,6 @@ watch(
     showCarousel.value = newVal === "/";
   }
 );
-const reload = () => {
-  console.log("reload");
-  window.location.reload();
-};
 </script>
 
 <style lang="scss">

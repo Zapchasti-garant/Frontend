@@ -25,7 +25,6 @@ export const useStore = defineStore("store", () => {
       const res = await useApi(id, view);
       if ("rows" in res) {
         if (res.status === 200 || res.status === 201) {
-          console.log("Данные", res);
           listData.value = res.rows;
           totalPages.value = res.pages;
           // this.parts =  data.filter((item: List) => item.category === '3')
@@ -47,6 +46,10 @@ export const useStore = defineStore("store", () => {
   }
   async function fetchSearch(name: string) {
     const res = await useSearch(name);
+    if (name.length < 3) {
+      listSearch.value = [];
+      return;
+    }
     const error = {
       name: "Ничего не найдено, попробуйте изменить условия поиска",
     };
