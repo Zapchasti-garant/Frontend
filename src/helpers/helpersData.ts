@@ -15,6 +15,8 @@ export const itemsBottomList = [
   { name: "Д49" },
 ];
 export const itemsBottom = [
+  { name: "Запчасти к тепловозам", icon: "mdi-wrench " },
+  { name: "Запчасти к дизелям", icon: "mdi-wrench " },
   { name: "Запчасти к гидропередаче", icon: "mdi-wrench " },
   { name: "Запчасти к компрессорам", icon: "mdi-wrench " },
   { name: "Электрика", icon: "mdi-battery-charging " },
@@ -25,7 +27,6 @@ export const itemsBottom = [
 export const itemsNavigation = [
   { title: "Главная", name: "home" },
   { title: "Запчасти", name: "parts" },
-  { title: "На складе", name: "stock" },
   { title: "Контакты", name: "contacts" },
   { title: "Диллерская продукция", name: "dillers" },
 ];

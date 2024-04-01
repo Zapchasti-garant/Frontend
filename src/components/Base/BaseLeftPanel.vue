@@ -1,60 +1,21 @@
 <template>
   <v-card class="mx-auto" width="300">
     <v-list>
-      <v-list-item class="list-title">
-        <h3>На складе</h3>
-      </v-list-item>
-    </v-list>
-    <v-list v-model:opened="open">
-      <v-list-group value="itemsTop">
-        <template v-slot:activator="{ props }">
-          <v-list-item
-            class="list-item"
-            color="primary"
-            prepend-icon="mdi-tram-side"
-            v-bind="props"
-            title="Запчасти к тепловозам"
-            style="background: #1e75a0; color: aliceblue"
-          ></v-list-item>
-        </template>
-
-        <BaseLeftPanelItem :list="itemsTopList" />
-      </v-list-group>
-    </v-list>
-    <v-list v-model:opened="open2">
-      <v-list-group value="itemsBottom" class="list-group">
-        <template v-slot:activator="{ props }">
-          <v-list-item
-            class="list-item"
-            color="primary"
-            v-bind="props"
-            prepend-icon="mdi-train"
-            title="Запчасти к дизелям"
-            style="background: #1e75a0; color: aliceblue"
-          ></v-list-item>
-        </template>
-
-        <BaseLeftPanelItem :list="itemsBottomList" />
-      </v-list-group>
-    </v-list>
-    <v-list>
-      <BaseLeftPanelItem :list="itemsBottom" :class="bottomClass" tabindex='0'/>
+      <BaseLeftPanelItem
+        :list="itemsBottom"
+        :class="bottomClass"
+        tabindex="0"
+      />
     </v-list>
   </v-card>
 </template>
 
 <script setup lang="ts">
 import BaseLeftPanelItem from "@/components/Home/HomeLeftPanelItem.vue";
-import {
-itemsBottom,
-itemsBottomList,
-itemsTopList,
-} from "@/helpers/helpersData.ts";
-import { ref } from "vue";
+import { itemsBottom } from "@/helpers/helpersData.ts";
+import { provide } from "vue";
 
-const open = ref(["items"]);
-const open2 = ref(["items"]);
-
+provide("itemsBottom", itemsBottom);
 const bottomClass = "top-panel";
 </script>
 

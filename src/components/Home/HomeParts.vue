@@ -27,7 +27,7 @@
           {{ item.name }}
         </v-card-title>
         <v-card-subtitle style="padding-top: 15px; padding-bottom: 15px">
-          Наличие на складе: {{ item.number }}
+          Наличие на складе: {{ stockFormat(item.number) }}
         </v-card-subtitle>
       </v-card>
     </div>
@@ -36,11 +36,11 @@
 </template>
 
 <script setup lang="ts">
+import { stockFormat } from "@/helpers/priceFormat";
 import { useStore } from "@/store/store.ts";
 import { computed, onActivated, onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import HomePagination from "./HomePagination.vue";
-
 const errorImg = "/img/errorImg.jpg";
 const store = useStore();
 const $router = useRouter();

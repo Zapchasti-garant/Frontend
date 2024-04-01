@@ -23,7 +23,12 @@
         <h4>
           Наличие на складе:
           <span class="orders"
-            >{{ item.number }} <span style="color: #727272">шт.</span></span
+            >{{ stockFormat(item.number) }}
+            <span
+              style="color: #727272"
+              v-if="item.number !== '0' && item.number !== 'null'"
+              >шт.</span
+            ></span
           >
         </h4>
         <h1>Цена {{ priceFormat(item.price) }} ₽</h1>
@@ -55,12 +60,11 @@
 </template>
 
 <script setup lang="ts">
-import priceFormat from "@/helpers/priceFormat";
+import priceFormat, { stockFormat } from "@/helpers/priceFormat";
 import { useStore } from "@/store/store";
 import { Product } from "@/types/types";
 import IconPhone from "@/ui/Icon/IconPhone.vue";
 import { computed, onBeforeUnmount, ref } from "vue";
-
 const errorImg = "/img/errorImg.jpg";
 onBeforeUnmount(() => {
   store.flag = false;

@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-list-item
-    tabindex='0'
+      tabindex="0"
       v-for="(item, i) in props.list"
       :key="i"
       :class="props.class"
@@ -15,7 +15,6 @@
 
 <script setup lang="ts">
 import { defineProps, PropType } from "vue";
-
 interface ListItems {
   name: string;
   icon?: string;
