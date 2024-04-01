@@ -7,8 +7,20 @@
         :key="idx"
         @click="goToViewProduct(item.id)"
       >
-        <v-img height="200px" :src="item.img" cover @load="loader">
-          <v-skeleton-loader type="image" v-if="loadSkeleton" height="200">
+        <v-img
+          :key="idx"
+          height="200px"
+          :src="item.img"
+          contain
+          @load="handleImageLoad(item.img)"
+          @loadstart="handleImageLoad(item.img)"
+          @error="item.img = errorImg"
+        >
+          <v-skeleton-loader
+            type="image"
+            v-if="!imageLoaded[item.img]"
+            height="200"
+          >
           </v-skeleton-loader>
         </v-img>
         <v-card-title>
@@ -19,25 +31,28 @@
         </v-card-subtitle>
       </v-card>
     </div>
-    <HomePagination />
+    <HomePagination @change-page="changePage" />
   </section>
 </template>
 
 <script setup lang="ts">
 import { useStore } from "@/store/store.ts";
-import { computed, onMounted, ref } from "vue";
+import { computed, onActivated, onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import HomePagination from "./HomePagination.vue";
 
+const errorImg = "/img/errorImg.jpg";
 const store = useStore();
 const $router = useRouter();
 const loadSkeleton = ref(true);
+const currentPage = ref("1");
 const goToViewProduct = (id: string) => {
   $router.push({ name: "product", params: { id } });
 };
+const imageLoaded = ref<any>({});
 
-const loader = () => {
-  loadSkeleton.value = false;
+const handleImageLoad = (imageUrl: any) => {
+  imageLoaded.value[imageUrl] = true;
 };
 
 const listData = computed(() => {
@@ -46,16 +61,22 @@ const listData = computed(() => {
   }
   return store.listData;
 });
+const changePage = (page: string) => {
+  currentPage.value = page;
+};
+onActivated(async () => {
+  await store.getList("", currentPage.value);
+});
 
 onMounted(async () => {
   loadSkeleton.value = true;
-  console.log(store.listSearch);
+
   if (store.flag) {
     store.flag = false;
     return;
   }
   try {
-    await store.getList("", "1");
+    await store.getList("", currentPage.value);
   } catch (err) {
     console.log(err);
   }

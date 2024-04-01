@@ -3,7 +3,19 @@
     <div class="container">
       <div style="border-bottom: 2px solid #efefef"></div>
       <div class="photo">
-        <img :src="item.img" />
+        <!-- <img :src="item.img" /> -->
+
+        <v-img
+          :key="item.img"
+          height="240px"
+          :src="item.img"
+          contain
+          @load="handleImageLoad"
+          @error="handleError"
+        >
+          <v-skeleton-loader type="image" v-if="!imageLoaded" height="240">
+          </v-skeleton-loader>
+        </v-img>
       </div>
 
       <div class="description">
@@ -49,9 +61,19 @@ import { Product } from "@/types/types";
 import IconPhone from "@/ui/Icon/IconPhone.vue";
 import { computed, onBeforeUnmount, ref } from "vue";
 
+const errorImg = "/img/errorImg.jpg";
 onBeforeUnmount(() => {
   store.flag = false;
 });
+const imageLoaded = ref(false);
+
+const handleImageLoad = () => {
+  imageLoaded.value = true;
+};
+const handleError = () => {
+  imageLoaded.value = true;
+  item.value.img = errorImg;
+};
 const store = useStore();
 const goToViewProduct = ref(false);
 const item = computed(() => store.product as Product);

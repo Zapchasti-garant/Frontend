@@ -25,8 +25,7 @@ watch(
   () => route.params.id,
   async (newVal) => {
     const id = Array.isArray(newVal) ? newVal[0] : newVal;
-    const itemIdNew = id.toString();
-    await store.getProduct(itemIdNew);
+    await store.getProduct(id);
   }
 );
 </script>

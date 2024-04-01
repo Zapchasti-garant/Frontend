@@ -5,40 +5,14 @@
         <nav class="navigation__nav">
           <ul class="list-reset navigation__list">
             <router-link
-              :to="{ name: 'home' }"
+              v-for="(item, idx) in itemsNavigation"
+              :to="{ name: item.name }"
+              :key="idx"
               class="navigation__link"
-              :class="{ isActive: route.path === '/' }"
+              :class="{ isActive: route.name === item.name }"
               tabindex="0"
             >
-              <li class="navigation__item" tabindex="-1">О компании</li>
-            </router-link>
-            <router-link
-              :to="{ name: 'parts' }"
-              class="navigation__link"
-              :class="{ isActive: route.path === '/parts' }"
-            >
-              <li class="navigation__item">Запчасти</li>
-            </router-link>
-            <router-link
-              :to="{ name: 'stock' }"
-              class="navigation__link"
-              :class="{ isActive: route.path === '/stock' }"
-            >
-              <li class="navigation__item">На складе</li>
-            </router-link>
-            <router-link
-              to="/dillers"
-              class="navigation__link"
-              :class="{ isActive: route.path === '/dillers' }"
-            >
-              <li class="navigation__item">Дилерская продукция</li></router-link
-            >
-            <router-link
-              to="/contacts"
-              class="navigation__link"
-              :class="{ isActive: route.path === '/contacts' }"
-            >
-              <li class="navigation__item">Контакты</li>
+              <li class="navigation__item" tabindex="-1">{{ item.title }}</li>
             </router-link>
           </ul>
         </nav>
@@ -48,8 +22,8 @@
 </template>
 
 <script setup lang="ts">
+import { itemsNavigation } from "@/helpers/helpersData.ts";
 import { RouterLink, useRoute } from "vue-router";
-
 const route = useRoute();
 </script>
 

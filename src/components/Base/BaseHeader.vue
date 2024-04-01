@@ -32,7 +32,7 @@
               </li>
             </ul>
           </nav>
-          <form class="header__form">
+          <form class="header__form" @submit.prevent="goToPageSearch">
             <div class="header__input-wrapper" tabindex="-1">
               <input
                 type="text"
@@ -40,17 +40,18 @@
                 v-model="inputValue"
                 @input="getList"
                 aria-label="input"
+                placeholder="Поиск по названию"
               />
               <HomeSearch
                 class="header__list-search"
-                tabindex="-1"
+                tabindex="0"
                 @submit-form="goToPageSearch"
               />
             </div>
 
             <button
               class="header__form-btn"
-              type="button"
+              type="submit"
               @click.prevent="goToPageSearch"
             >
               Поиск
@@ -93,6 +94,9 @@ watch(
   }
 );
 const getList = async () => {
+  if (inputValue.value.length < 2) {
+    store.clearSearch();
+  }
   if (inputValue.value.length > 3) {
     setTimeout(async () => {
       await store.fetchSearch(inputValue.value);
