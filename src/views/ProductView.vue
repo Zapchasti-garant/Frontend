@@ -24,6 +24,7 @@ onMounted(async () => {
 watch(
   () => route.params.id,
   async (newVal) => {
+    if (!newVal) return;
     const id = Array.isArray(newVal) ? newVal[0] : newVal;
     await store.getProduct(id);
   }

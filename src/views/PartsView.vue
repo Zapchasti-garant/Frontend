@@ -1,26 +1,36 @@
 <template>
   <div>
-    <HomeParts />
+    <HomeParts
+      :list-products="listData"
+      @change-page="changePage"
+      :length="totalPages"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import HomeParts from "@/components/Home/HomeParts.vue";
-import { useStore } from "@/store/store.ts";
-import { watch } from "vue";
-import { useRoute } from "vue-router";
+import { useApi } from "@/composables/useApi";
+import { Product, Response } from "@/types/types";
+import { onMounted, ref } from "vue";
 
-const store = useStore();
-const route = useRoute();
-watch(
-  () => route.name,
-  (newValue) => {
-    store.clearState();
-    if (newValue !== "parts") {
-      console.log("work");
-    }
+const changePage = async (page: number) => {
+  const res = await useApi<Response>(`product/limit?limit=9&offset=${page}`);
+  if (res.data) {
+    listData.value = res.data.rows as Product[];
   }
-);
+};
+
+const listData = ref<Product[]>([]);
+const totalPages = ref<number>(0);
+onMounted(async () => {
+  const res = await useApi<Response>(`product/limit?limit=9&offset=${1}`);
+  if (res.data) {
+    listData.value = res.data.rows as Product[];
+    totalPages.value = Math.ceil(res.data.count / 9);
+    console.log(listData.value);
+  }
+});
 </script>
 
 <style scoped></style>
