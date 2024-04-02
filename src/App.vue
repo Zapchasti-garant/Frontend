@@ -32,7 +32,6 @@
 import Header from "@/components/Base/BaseHeader.vue";
 import BaseLeftPanel from "@/components/Base/BaseLeftPanel.vue";
 import Navigation from "@/components/Base/BaseNavigation.vue";
-import { useStore } from "@/store/store.ts";
 import { Transition, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import BaseFooter from "./components/Base/BaseFooter.vue";
@@ -44,7 +43,6 @@ interface Breadcrumbs {
   disabled: any;
   href: any;
 }
-const store = useStore();
 const showCarousel = ref(true);
 const route = useRoute();
 const breadcrumbs = ref<Breadcrumbs[]>([
@@ -58,9 +56,6 @@ watch(
   () => route.path,
   (newVal) => {
     const corrTitle = route.meta.title;
-    if (newVal !== "/parts") {
-      store.clearState();
-    }
     if (newVal === "/") {
       breadcrumbs.value = [
         {

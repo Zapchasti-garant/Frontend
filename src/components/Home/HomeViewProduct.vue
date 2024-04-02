@@ -3,8 +3,6 @@
     <div class="container">
       <div style="border-bottom: 2px solid #efefef"></div>
       <div class="photo">
-        <!-- <img :src="item.img" /> -->
-
         <v-img
           :key="item.img"
           height="240px"
@@ -31,7 +29,7 @@
             ></span
           >
         </h4>
-        <h1>Цена {{ priceFormat(item.price) }} ₽</h1>
+        <h1>Цена {{ item.price }} ₽</h1>
         <div class="btn-wrap">
           <button class="btn-click" @click="goToViewProduct = !goToViewProduct">
             Купить
@@ -60,15 +58,14 @@
 </template>
 
 <script setup lang="ts">
-import priceFormat, { stockFormat } from "@/helpers/priceFormat";
+import { stockFormat } from "@/helpers/priceFormat";
 import { useStore } from "@/store/store";
 import { Product } from "@/types/types";
 import IconPhone from "@/ui/Icon/IconPhone.vue";
-import { computed, onBeforeUnmount, ref } from "vue";
+import { computed, ref } from "vue";
+
 const errorImg = "/img/errorImg.jpg";
-onBeforeUnmount(() => {
-  store.flag = false;
-});
+
 const imageLoaded = ref(false);
 
 const handleImageLoad = () => {
