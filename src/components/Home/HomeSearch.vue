@@ -20,11 +20,15 @@ import { useRouter } from "vue-router";
 const $router = useRouter();
 const store = useStore();
 const listSearch = computed(() => store.listSearch as Product[]);
-
-const emit = defineEmits(["submitForm"]);
+const emit = defineEmits(["click-product"]);
 const goToViewProduct = async (id: string) => {
-  emit("submitForm", false);
   await store.getProduct(id);
+  store.clearSearch();
+  emit("click-product", true);
+  window.scrollTo({
+    top: 550,
+    behavior: "smooth",
+  });
   $router.push({ name: "product", params: { id } });
 };
 </script>

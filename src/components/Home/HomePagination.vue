@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper__pagination">
     <v-pagination
-      :length="lengthPagination"
+      :length="props.length"
       v-model="page"
       @click="changeView(page)"
       :total-visible="9"
@@ -10,19 +10,17 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from "@/store/store.ts";
-import { computed, ref } from "vue";
-
-const lengthPagination = computed(() => {
-  const length = Math.ceil(store.totalPages / 9);
-  return length;
+import { ref } from "vue";
+const props = defineProps({
+  length: {
+    type: Number,
+    default: 1,
+  },
 });
-const store = useStore();
 const page = ref<number>(1);
 const emit = defineEmits(["changePage"]);
 const changeView = async (view: number) => {
-  await store.getList("", view.toString());
-  emit("changePage", view.toString());
+  emit("changePage", view);
 };
 </script>
 

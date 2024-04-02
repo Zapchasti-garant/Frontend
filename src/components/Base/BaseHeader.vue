@@ -46,6 +46,7 @@
                 class="header__list-search"
                 tabindex="0"
                 @submit-form="goToPageSearch"
+                @click-product="clearInput"
               />
             </div>
 
@@ -72,18 +73,20 @@ import IconPhone from "@/ui/Icon/IconPhone.vue";
 import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
 
+const emit = defineEmits(["submit-form"]);
 const $router = useRouter();
 const store = useStore();
 const inputValue = ref<string>("");
-const goToPageSearch = () => {
-  $router.push({ path: "/parts" });
-  store.pageSearch();
+
+const goToPageSearch = async () => {
+  store.pageSearch(inputValue.value);
+  store.clearSearch();
   inputValue.value = "";
   window.scrollTo({
-    top: 700,
+    top: 550,
     behavior: "smooth",
   });
-  store.flag = true;
+  $router.push({ path: "/search" });
 };
 watch(
   () => inputValue.value.length,
@@ -93,6 +96,10 @@ watch(
     }
   }
 );
+
+const clearInput = () => {
+  inputValue.value = "";
+};
 const getList = async () => {
   if (inputValue.value.length < 2) {
     store.clearSearch();

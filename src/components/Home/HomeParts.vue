@@ -3,7 +3,7 @@
     <div class="container custom__wrapper-list">
       <v-card
         max-width="344"
-        v-for="(item, idx) in listData"
+        v-for="(item, idx) in props.listProducts"
         :key="idx"
         @click="goToViewProduct(item.id)"
       >
@@ -26,26 +26,38 @@
         <v-card-title>
           {{ item.name }}
         </v-card-title>
+        <v-card-title> Цена: {{ item.price }} ₽</v-card-title>
         <v-card-subtitle style="padding-top: 15px; padding-bottom: 15px">
           Наличие на складе: {{ stockFormat(item.number) }}
         </v-card-subtitle>
       </v-card>
     </div>
-    <HomePagination @change-page="changePage" />
+    <HomePagination @change-page="changePage" :length="props.length" />
   </section>
 </template>
 
 <script setup lang="ts">
 import { stockFormat } from "@/helpers/priceFormat";
-import { useStore } from "@/store/store.ts";
-import { computed, onActivated, onMounted, ref } from "vue";
+import { Product } from "@/types/types";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import HomePagination from "./HomePagination.vue";
+
+const props = defineProps({
+  listProducts: {
+    type: Array as () => Array<Product>,
+    required: true,
+  },
+  length: {
+    type: Number,
+    default: 1,
+  },
+});
+const emit = defineEmits(["changePage"]);
+
 const errorImg = "/img/errorImg.jpg";
-const store = useStore();
 const $router = useRouter();
-const loadSkeleton = ref(true);
-const currentPage = ref("1");
+const currentPage = ref(1);
 const goToViewProduct = (id: string) => {
   $router.push({ name: "product", params: { id } });
 };
@@ -55,34 +67,10 @@ const handleImageLoad = (imageUrl: any) => {
   imageLoaded.value[imageUrl] = true;
 };
 
-const listData = computed(() => {
-  if (store.listSearch.length !== 0) {
-    return store.listSearch;
-  }
-  return store.listData;
-});
-const changePage = (page: string) => {
+const changePage = (page: number) => {
   currentPage.value = page;
-  console.log(currentPage.value);
+  emit("changePage", page);
 };
-
-onActivated(async () => {
-  await store.getList("", currentPage.value);
-});
-
-onMounted(async () => {
-  loadSkeleton.value = true;
-
-  if (store.flag) {
-    store.flag = false;
-    return;
-  }
-  try {
-    await store.getList("", currentPage.value);
-  } catch (err) {
-    console.log(err);
-  }
-});
 </script>
 
 <style scoped lang="scss">
