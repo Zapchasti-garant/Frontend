@@ -27,3 +27,5 @@ jobs:
             rm -rf frontend
             cp -r ./newFrontend/frontend .
             rm -rf newFrontend
+            cd frontend
+            docker-compose up --build -d            
