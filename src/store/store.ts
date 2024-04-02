@@ -21,16 +21,9 @@ export const useStore = defineStore("store", () => {
   const flag = ref<boolean>(false);
 
   async function getList(id?: string, view?: string) {
-    if (view) {
-      const res = await useApi(id, view);
-      if ("rows" in res) {
-        if (res.status === 200 || res.status === 201) {
-          listData.value = res.rows;
-          totalPages.value = res.pages;
-          // this.parts =  data.filter((item: List) => item.category === '3')
-          // this.gaskets = data.filter((item) => item.category === '2')
-        }
-      }
+    const res = await useApi(id, view);
+    if ("products" in res) {
+      listData.value = res.products;
     }
   }
 

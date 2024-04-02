@@ -1,46 +1,29 @@
-import { Product } from "@/types/types.ts";
 import ky from "ky";
-import { ref } from "vue";
+import { ref, UnwrapRef } from "vue";
 import { BASE_URL } from "../../config.ts";
 
-type Response = {
-  rows: Product[];
-  count: number;
-};
 const api = ky.create({ prefixUrl: BASE_URL });
-export const useApi = async (id?: string, page?: string) => {
-  const data = ref<Response>({
-    rows: [],
-    count: 0,
-  });
+export const useApi = async <T>(url: string, params?: Record<string, any>) => {
+  const data = ref<T | null>(null);
   const status = ref<number>(0);
-  const product = ref<Product>({
-    category: "",
-    id: "",
-    img: "",
-    number: "",
-    name: "",
-    price: "",
-  });
-  if (page !== "" && page) {
-    const res = await api.get(`product/limit?limit=9&offset=${page}`);
-    status.value = res.status;
-    data.value = await res.json<Response>();
+
+  try {
+     const res = await api.get(url, {
+       searchParams: params,
+       retry: {
+         limit: 8,
+         methods: ['get'],
+         statusCodes: [400, 404, 413, 500, 503, 504, 505],
+         backoffLimit: 1000
+       }
+     });
+     status.value = res.status;
+     data.value = await res.json<T>() as UnwrapRef<T> | null
+
+  } catch (error: any) {
+     console.error('API request failed:', error);
+     status.value = error.response?.status || 500;
   }
 
-  if (id !== "" && id) {
-    const res = await api.get(`product/id?id=${id}`);
-    status.value = res.status;
-    product.value = await res.json<Product>();
-  }
-
-  if (id) {
-    return Promise.resolve({ product: product.value, status: status.value });
-  } else {
-    return Promise.resolve({
-      rows: data.value.rows,
-      status: status.value,
-      pages: data.value.count,
-    });
-  }
-};
+  return { data: data.value, status: status.value };
+ };
