@@ -48,6 +48,11 @@ const routes: RouteRecordRaw[] = [
     name: "search",
     component: () => import("@/views/SearchView.vue"),
   },
+  {
+    path: "/category",
+    name: "category",
+    component: () => import("@/views/CategoriesView.vue"),
+  },
 ];
 
 const router = createRouter({

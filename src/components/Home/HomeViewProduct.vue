@@ -1,6 +1,11 @@
 <template>
   <div class="Product">
     <div class="container">
+      <div class="link__wrapper">
+        <a @click="goBack" class="link__back" tabindex="0">
+          <v-icon icon="mdi-arrow-left" start></v-icon> Назад</a
+        >
+      </div>
       <div style="border-bottom: 2px solid #efefef"></div>
       <div class="photo">
         <v-img
@@ -58,16 +63,20 @@
 </template>
 
 <script setup lang="ts">
-import { stockFormat } from "@/helpers/priceFormat";
 import { useStore } from "@/store/store";
 import { Product } from "@/types/types";
 import IconPhone from "@/ui/Icon/IconPhone.vue";
+import { stockFormat } from "@/utils/priceFormat";
 import { computed, ref } from "vue";
+import { useRouter } from "vue-router";
 
 const errorImg = "/img/errorImg.jpg";
-
+const $router = useRouter();
 const imageLoaded = ref(false);
 
+const goBack = () => {
+  $router.go(-1);
+};
 const handleImageLoad = () => {
   imageLoaded.value = true;
 };
@@ -176,5 +185,13 @@ const item = computed(() => store.product as Product);
       cursor: pointer;
     }
   }
+}
+.link__back {
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 5px;
+  color: rgb(113, 113, 113);
+  font-size: 22px;
+  font-weight: 400;
 }
 </style>

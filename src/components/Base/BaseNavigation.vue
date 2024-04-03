@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { itemsNavigation } from "@/helpers/helpersData.ts";
+import { itemsNavigation } from "@/utils/menuItems.ts";
 import { RouterLink, useRoute } from "vue-router";
 const route = useRoute();
 </script>

@@ -25,6 +25,11 @@
       </div>
     </div>
   </main>
+  <div class="errors" v-for="error in errorsList">
+    <h2 class="errors__title">
+      {{ error.name }}
+    </h2>
+  </div>
   <BaseFooter />
 </template>
 
@@ -32,11 +37,16 @@
 import Header from "@/components/Base/BaseHeader.vue";
 import BaseLeftPanel from "@/components/Base/BaseLeftPanel.vue";
 import Navigation from "@/components/Base/BaseNavigation.vue";
-import { Transition, ref, watch } from "vue";
+import { Transition, computed, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import BaseFooter from "./components/Base/BaseFooter.vue";
+import { useStore } from "./store/store";
 import Background from "./ui/Background.vue";
 import Carousel from "./ui/Carousel.vue";
+
+const store = useStore();
+
+const errorsList = computed(() => store.errors);
 
 interface Breadcrumbs {
   title: any;
@@ -138,5 +148,21 @@ watch(
   font-size: 16px;
   text-decoration: underline;
   font-weight: 400;
+}
+.errors {
+  position: fixed;
+  z-index: 1000;
+  border-radius: 5px;
+  padding: 20px;
+  bottom: 30px;
+  right: 30px;
+  width: 26%;
+  height: 150px;
+  background: #9e1212;
+
+  &__title {
+    color: #fff;
+    text-align: center;
+  }
 }
 </style>
