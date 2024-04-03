@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import BaseLeftPanelItem from "@/components/Home/HomeLeftPanelItem.vue";
-import { itemsBottom } from "@/helpers/helpersData.ts";
+import { itemsBottom } from "@/utils/menuItems.ts";
 import { provide } from "vue";
 
 provide("itemsBottom", itemsBottom);

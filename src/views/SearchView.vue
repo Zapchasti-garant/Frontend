@@ -20,9 +20,16 @@ watch(
   async (newValue) => {
     const encodedName =
       newValue.charAt(0).toUpperCase() + newValue.slice(1).toLowerCase();
-    const res = await useApi<Product[]>(`product/name`, { name: encodedName });
-    if (res.data) {
-      listData.value = res.data as Product[];
+
+    try {
+      const res = await useApi<Product[]>(`product/name`, {
+        name: encodedName,
+      });
+      if (res.data) {
+        listData.value = res.data as Product[];
+      }
+    } catch (error) {
+      throw new Error("Ошибка при запросе");
     }
   }
 );
@@ -31,9 +38,13 @@ onMounted(async () => {
   const encodedName =
     nameProduct.value.charAt(0).toUpperCase() +
     nameProduct.value.slice(1).toLowerCase();
-  const res = await useApi<Product[]>(`product/name`, { name: encodedName });
-  if (res.data) {
-    listData.value = res.data as Product[];
+  try {
+    const res = await useApi<Product[]>(`product/name`, { name: encodedName });
+    if (res.data) {
+      listData.value = res.data as Product[];
+    }
+  } catch (error) {
+    throw new Error("Ошибка при запросе");
   }
 });
 </script>

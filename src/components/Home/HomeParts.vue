@@ -2,6 +2,7 @@
   <section class="parts">
     <div class="container custom__wrapper-list">
       <v-card
+        style="cursor: pointer"
         max-width="344"
         v-for="(item, idx) in props.listProducts"
         :key="idx"
@@ -19,7 +20,7 @@
           <v-skeleton-loader
             type="image"
             v-if="!imageLoaded[item.img]"
-            height="200"
+            height="230px"
           >
           </v-skeleton-loader>
         </v-img>
@@ -37,8 +38,8 @@
 </template>
 
 <script setup lang="ts">
-import { stockFormat } from "@/helpers/priceFormat";
 import { Product } from "@/types/types";
+import { stockFormat } from "@/utils/priceFormat";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import HomePagination from "./HomePagination.vue";

@@ -51,6 +51,7 @@
             </div>
 
             <button
+              :disabled="inputValue.length < 2"
               class="header__form-btn"
               type="submit"
               @click.prevent="goToPageSearch"
@@ -104,10 +105,10 @@ const getList = async () => {
   if (inputValue.value.length < 2) {
     store.clearSearch();
   }
-  if (inputValue.value.length > 3) {
+  if (inputValue.value.length > 2) {
     setTimeout(async () => {
       await store.fetchSearch(inputValue.value);
-    }, 300);
+    }, 900);
   } else {
     store.clearSearch();
   }

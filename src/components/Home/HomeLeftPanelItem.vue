@@ -9,16 +9,29 @@
       :value="item"
       :prepend-icon="item.icon"
       style="background: #1b93ce; color: #fff"
+      @click='fetchCategory(item.category)'
     ></v-list-item>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useStore } from '@/store/store';
 import { PropType } from "vue";
+import { useRouter } from 'vue-router';
+
+const $router = useRouter()
+
+const store = useStore()
 interface ListItems {
   name: string;
   icon?: string;
   class?: string;
+  category: string
+}
+
+const fetchCategory = async (name:string) => {
+  store.getCategory(name)
+  $router.push({ name: 'category' })
 }
 const props = defineProps({
   list: {

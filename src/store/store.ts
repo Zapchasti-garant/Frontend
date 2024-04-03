@@ -4,9 +4,9 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 export const useStore = defineStore("store", () => {
-  const parts = ref<Product[]>([]);
-  const gaskets = ref<Product[]>([]);
   const listSearch = ref<any>([]);
+  const category = ref<string>("");
+  const errors = ref<any>([]);
   const requestSearch = ref<string>("");
   const product = ref<Product>({
     category: "",
@@ -17,6 +17,14 @@ export const useStore = defineStore("store", () => {
     price: "",
   });
 
+  function pushErrors(error: any) {
+    errors.value.push({
+      name: error,
+    });
+    setTimeout(() => {
+      errors.value = [];
+    }, 5000);
+  }
   function pageSearch(name: string) {
     requestSearch.value = name;
   }
@@ -49,15 +57,21 @@ export const useStore = defineStore("store", () => {
   function clearSearch() {
     listSearch.value = [];
   }
+
+  function getCategory(name: string) {
+    category.value = name;
+  }
   return {
     listSearch,
-    parts,
-    gaskets,
     getProduct,
     fetchSearch,
     clearSearch,
     product,
     pageSearch,
     requestSearch,
+    category,
+    getCategory,
+    errors,
+    pushErrors,
   };
 });

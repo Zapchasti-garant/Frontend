@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 // @ts-ignore
-import {images} from "../helpers/helpersData.ts";
+import { images } from "../utils/menuItems.ts";
 </script>
 
 <style scoped>
