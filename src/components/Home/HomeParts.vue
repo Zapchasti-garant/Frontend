@@ -2,8 +2,8 @@
   <section class="parts">
     <div class="container custom__wrapper-list">
       <v-card
+        class="custom__wrapper-card"
         style="cursor: pointer"
-        max-width="344"
         v-for="(item, idx) in props.listProducts"
         :key="idx"
         @click="goToViewProduct(item.id)"
@@ -75,6 +75,14 @@ const changePage = (page: number) => {
 </script>
 
 <style scoped lang="scss">
+.custom__wrapper-card {
+  width: 100%;
+  justify-self: center;
+
+  @media (width < 768px) {
+    max-width: 100%;
+  }
+}
 .parts {
   padding: 30px 0;
 }
@@ -82,5 +90,12 @@ const changePage = (page: number) => {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+
+  @media (width < 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (width < 768px) {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

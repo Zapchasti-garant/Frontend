@@ -112,6 +112,10 @@ watch(
   display: grid;
   grid-template-columns: 1fr 4fr;
   gap: 15px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
 }
 .breadcrumbs__link {
   margin-right: 10px;

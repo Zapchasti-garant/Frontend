@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" width="300">
+  <v-card class="mx-auto custom__left-panel" width="300">
     <v-list>
       <BaseLeftPanelItem
         :list="itemsBottom"
@@ -20,6 +20,11 @@ const bottomClass = "top-panel";
 </script>
 
 <style scoped>
+.custom__left-panel {
+  @media (width < 1024px) {
+    display: none;
+  }
+}
 .list-title {
   margin-bottom: 5px;
   padding: 7px 0px;

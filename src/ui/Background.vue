@@ -1,9 +1,10 @@
 <template>
   <div class="carousel__wrapper">
-    <div class="container"><div class="container wrapper__img">
-      <!--      <img :src="backImg" alt="" class="imgFon" />-->
-    </div></div>
-
+    <div class="container">
+      <div class="container wrapper__img">
+        <!--      <img :src="backImg" alt="" class="imgFon" />-->
+      </div>
+    </div>
   </div>
 </template>
 
@@ -16,6 +17,10 @@
   background-repeat: no-repeat;
   background-position: center;
   background-image: url("/img/back-carousel.png");
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
 }
 .wrapper__img {
   height: 500px;
