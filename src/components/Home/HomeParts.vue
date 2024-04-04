@@ -7,6 +7,7 @@
         v-for="(item, idx) in props.listProducts"
         :key="idx"
         @click="goToViewProduct(item.id)"
+        
       >
         <v-img
           :key="idx"
@@ -24,13 +25,15 @@
           >
           </v-skeleton-loader>
         </v-img>
-        <v-card-title>
+        <div class="text-wrapper">
+        <v-card-title class="text-title">
           {{ item.name }}
         </v-card-title>
-        <v-card-title> Цена: {{ item.price }} ₽</v-card-title>
-        <v-card-subtitle style="padding-top: 15px; padding-bottom: 15px">
+        <v-card-title class="text-price"> Цена: {{ item.price }} ₽</v-card-title>
+        <v-card-subtitle style="padding-top: 15px; padding-bottom: 15px" class="text-availability">
           Наличие на складе: {{ stockFormat(item.number) }}
         </v-card-subtitle>
+      </div>
       </v-card>
     </div>
     <HomePagination @change-page="changePage" :length="props.length" />
@@ -97,5 +100,31 @@ const changePage = (page: number) => {
   @media (width < 768px) {
     grid-template-columns: 1fr;
   }
+}
+.text-title {
+  @media (width < 1340px) {
+      font-size: 18px;
+}
+@media (width < 1200px) {
+      font-size: 14px;
+}
+}
+
+.text-price {
+  @media (width < 1340px) {
+      font-size: 16px;
+}
+}
+.text-availability {
+  @media (width < 1340px) {
+      font-size: 14px;
+}
+}
+.text-wrapper {
+  @media (width < 768px) {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+}
 }
 </style>

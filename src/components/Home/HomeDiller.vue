@@ -615,11 +615,23 @@
   td {
     border: 1px solid grey;
     padding: 5px 5px;
+    @media (width < 768px) {
+    font-size: 14px;
+  }
+  @media (width < 576px) {
+    font-size: 10px;
+  }
   }
 
   th {
     padding: 5px 5px;
     border: 1px solid grey;
+    @media (width < 768px) {
+    font-size: 14px;
+  }
+  @media (width < 576px) {
+    font-size: 10px;
+  }
   }
 }
 </style>
