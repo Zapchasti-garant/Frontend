@@ -8,11 +8,14 @@
       <div class="main__wrapper">
         <BaseLeftPanel class="main__left" />
         <div>
-          <v-breadcrumbs :items="breadcrumbs">
-            <template v-slot:title="{ item }">
-              {{ item.title.toUpperCase() }}
-            </template>
-          </v-breadcrumbs>
+          <BurgerMobile />
+          <div class="main__breadcrumbs">
+            <v-breadcrumbs :items="breadcrumbs">
+              <template v-slot:title="{ item }">
+                {{ item.title.toUpperCase() }}
+              </template>
+            </v-breadcrumbs>
+          </div>
 
           <router-view v-slot="{ Component }">
             <transition name="fade" mode="out-in">
@@ -37,13 +40,13 @@
 import Header from "@/components/Base/BaseHeader.vue";
 import BaseLeftPanel from "@/components/Base/BaseLeftPanel.vue";
 import Navigation from "@/components/Base/BaseNavigation.vue";
+import BurgerMobile from "@/components/BurgerMobile.vue";
 import { Transition, computed, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import BaseFooter from "./components/Base/BaseFooter.vue";
 import { useStore } from "./store/store";
 import Background from "./ui/Background.vue";
 import Carousel from "./ui/Carousel.vue";
-
 const store = useStore();
 
 const errorsList = computed(() => store.errors);
@@ -167,6 +170,11 @@ watch(
   &__title {
     color: #fff;
     text-align: center;
+  }
+}
+.main__breadcrumbs {
+  @media (width < 1024px) {
+    display: none;
   }
 }
 </style>
