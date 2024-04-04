@@ -23,11 +23,11 @@ const textBtn = ref("Открыть меню");
 const show = ref(false);
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .burger__wrapper {
   display: none;
   background: #ffffff;
-  @media (width < 1024px) {
+  @media (width < 1025px) {
     display: block;
   }
 }

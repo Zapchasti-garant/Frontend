@@ -16,7 +16,7 @@ const props = defineProps({
   },
 });
 
-const logoIcon = "/img/about1.jpg";
+const logoIcon = "/img/about.jpg";
 
 </script>
 

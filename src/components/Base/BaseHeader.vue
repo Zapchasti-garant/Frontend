@@ -4,7 +4,7 @@
       <div class="header__wrapper">
         <div class="header__logotype">
         <router-link class="header__logo" to="/" tabindex="0">
-          <IconAboutlogo
+          <IconLogo
             :width="120"
             :height="120"
             class="header__img"
@@ -78,7 +78,7 @@
 <script setup lang="ts">
 import HomeSearch from "@/components/Home/HomeSearch.vue";
 import { useStore } from "@/store/store.ts";
-import IconAboutlogo from "@/ui/Icon/IconAboutlogo.vue";
+import IconLogo from "@/ui/Icon/IconLogo.vue";
 import IconMail from "@/ui/Icon/IconMail.vue";
 import IconPhone from "@/ui/Icon/IconPhone.vue";
 import { ref, watch } from "vue";
@@ -151,10 +151,9 @@ const getList = async () => {
     }
   }
   &__img {
-    translate: 0 -10px;
+    translate: 0 10px;
     @media (width < 768px) {
-     width: 80px;
-     height: 80px;
+      display: none;
     }
     @media (width < 576px) {
      display: none;
@@ -164,6 +163,7 @@ const getList = async () => {
     position: relative;
     display: block;
     text-decoration: none;
+
 
     &:focus-visible {
       outline: none;
@@ -175,12 +175,12 @@ const getList = async () => {
 
     & span {
       position: absolute;
-      bottom: 60px;
-      left: 100px;
+      bottom: 17px;
+      left: 120px;
       display: block;
       font-size: 22px;
       font-weight: 600;
-      color: #01304d;
+      color: #000000;
 
       &::after {
         content: "";
@@ -192,13 +192,15 @@ const getList = async () => {
         background: #01304d;
         transition: width 0.3s ease-in-out;
       }
+      
       @media (width < 1434px) {
       font-size: 16px;
     }
+   
     @media (width < 768px) {
-      font-size: 14px;
-      bottom: 43px;
-      left: 70px;
+      font-size: 12px;
+      bottom: 18px;
+      left: 90px;
     }
     }
    
@@ -218,8 +220,13 @@ const getList = async () => {
     &:focus {
       outline: 1px solid #01304d;
     }
+    @media (width < 1025px) {
+      font-size: 20px;
+    }
     @media (width < 576px) {
-      padding: 10px 0 10px 10px;
+      font-size: 18px;
+    }
+    @media (width < 576px) {
       font-size: 14px;
     }
   }
@@ -249,6 +256,9 @@ const getList = async () => {
       background: #01304d;
       color: #fff;
     }
+    @media (width < 1025px) {
+      font-size: 16px;
+    }
     @media (width < 576px) {
       font-size: 14px;
     }
@@ -262,7 +272,13 @@ const getList = async () => {
   display: flex;
   justify-content: start;
   margin-bottom: 20px;
-  }
+@media (width < 768px) {
+  justify-content: center;
+}  
+@media (width < 576px) {
+  justify-content: start;
+}  
+}
 }
 
 .header__item svg {
@@ -299,8 +315,8 @@ const getList = async () => {
     @media (width < 768px) {
       grid-template-rows: repeat(1, 2fr);
       grid-template-areas:
-    "logo nav nav"
-    "logo nav nav"
+    "nav nav nav"
+    "nav nav nav"
     "form form form";
     }
     @media (width < 576px) {
@@ -351,13 +367,13 @@ const getList = async () => {
     transform: scale(0.96);
   }
   @media (width < 1434px) {
-    
   gap: 2px;
   font-size: 16px;
     }
-    @media (width < 768px) {
-      font-size: 14px;
+    @media (width < 1025px) {
+  font-size: 12px;
     }
+  
 }
 
 .header__list {
