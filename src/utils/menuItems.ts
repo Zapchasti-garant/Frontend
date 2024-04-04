@@ -27,6 +27,6 @@ export const itemsBottom = [
 export const itemsNavigation = [
   { title: "Главная", name: "home" },
   { title: "Запчасти", name: "parts" },
-  { title: "Контакты", name: "contacts" },
   { title: "Дилерская продукция", name: "dillers" },
+  { title: "Контакты", name: "contacts" },
 ];

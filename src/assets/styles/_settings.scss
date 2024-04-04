@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  behavior: smooth;
 }
 
 *,
@@ -15,7 +16,7 @@ html {
 }
 
 .page__body {
-  margin: 0;
+  margin: 0 auto;
   min-width: 320px;
   min-height: 100%;
   font-size: 16px;
