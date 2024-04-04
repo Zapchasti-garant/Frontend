@@ -2,7 +2,7 @@
   <div class="container">
     <div class="about__wrapper">
       <div class="right">
-        <IconAboutlogo :width="190" :height="190" class="about__logo"/>
+        <IconLogo :width="190" :height="190" class="about__logo"/>
         
         <p class="about__text">
           Наша молодая компания активно сотрудничает со многими производителями
@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import IconAboutlogo from "@/ui/Icon/IconAboutlogo.vue";
+import IconLogo from "@/ui/Icon/IconLogo.vue";
 </script>
 
 <style scoped lang="scss">
@@ -51,19 +51,8 @@ import IconAboutlogo from "@/ui/Icon/IconAboutlogo.vue";
   }
 }
 .about__logo {
-  @media  (width < 1025px) {
-    width: 140px;
-    height: 140px;
-  }
-  @media  (width < 768px) {
-    width: 120px;
-    height: 120px;
-  }
-  
-  @media  (width < 576px) {
-    width: 100px;
-    height: 100px;
-  }
+  padding-top: 20px;
+  padding-bottom: 20px;
  
 }
 

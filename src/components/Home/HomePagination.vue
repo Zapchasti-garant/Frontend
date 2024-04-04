@@ -28,7 +28,7 @@ onMounted(() => {
 });
 const getWidth = () => {
   if (window.innerWidth < 768) {
-    return 3;
+    return 1;
   } else {
     return 9;
   }
