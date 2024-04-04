@@ -173,7 +173,7 @@ watch(
   }
 }
 .main__breadcrumbs {
-  @media (width < 1024px) {
+  @media (width < 1025px) {
     display: none;
   }
 }

@@ -10,7 +10,7 @@
 
 <script setup lang="ts"></script>
 
-<style scoped>
+<style scoped lang="scss">
 .carousel__wrapper {
   width: 100%;
   background-size: cover;
@@ -26,7 +26,7 @@
   height: 500px;
   width: 100%;
   background-image: url("/img/img3.jpg");
-  background-position: 0 -198px;
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }

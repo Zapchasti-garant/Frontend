@@ -28,35 +28,14 @@
           <span class="orders"
             >{{ stockFormat(item.number) }}
             <span
-              style="color: #727272"
+              style="color: #727272 ; font-size: 10px"
               v-if="item.number !== '0' && item.number !== 'null'"
               >шт.</span
             ></span
           >
         </h4>
         <h1>Цена {{ item.price }} ₽</h1>
-        <div class="btn-wrap">
-          <button class="btn-click" @click="goToViewProduct = !goToViewProduct">
-            Купить
-          </button>
-          <Transition name="fade">
-            <div v-if="goToViewProduct">
-              <div class="status">
-                <ul class="list-reset list">
-                  <li class="item">
-                    <IconPhone :width="20" :height="20" />+7 (4832) 599-242
-                  </li>
-                  <li class="item">
-                    <IconPhone :width="20" :height="20" />+7-952-963-27-24
-                  </li>
-                  <li class="item">
-                    <IconPhone :width="20" :height="20" />+7-958-646-13-77
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </Transition>
-        </div>
+        
       </div>
     </div>
   </div>
@@ -65,7 +44,6 @@
 <script setup lang="ts">
 import { useStore } from "@/store/store";
 import { Product } from "@/types/types";
-import IconPhone from "@/ui/Icon/IconPhone.vue";
 import { stockFormat } from "@/utils/priceFormat";
 import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
@@ -85,17 +63,10 @@ const handleError = () => {
   item.value.img = errorImg;
 };
 const store = useStore();
-const goToViewProduct = ref(false);
 const item = computed(() => store.product as Product);
 </script>
 
 <style scoped lang="scss">
-.btn-wrap {
-  display: flex;
-  position: relative;
-  gap: 50px;
-  width: 100%;
-}
 
 .list {
   display: flex;
@@ -115,6 +86,9 @@ const item = computed(() => store.product as Product);
   width: 45%;
   text-align: center;
   float: left;
+  @media (width < 1200px) {
+    padding: 10px 10px;
+}
 
   img {
     max-height: 240px;
@@ -125,6 +99,9 @@ const item = computed(() => store.product as Product);
   float: left;
   width: 55%;
   border-left: 2px solid #efefef;
+  @media (width < 1200px) {
+    padding: 30px 30px;
+}
 
   h1 {
     margin: 0;
@@ -134,6 +111,15 @@ const item = computed(() => store.product as Product);
     font-weight: 300;
     font-size: 24px;
     font-weight: 300;
+    @media (width < 1200px) {
+      font-size: 18px;
+}
+ @media (width < 576px) {
+      font-size: 16px;
+}
+@media (width < 425px) {
+      font-size: 14px;
+}
   }
 
   h2 {
@@ -143,6 +129,15 @@ const item = computed(() => store.product as Product);
     color: #515151;
     text-transform: uppercase;
     font-weight: 500;
+    @media (width < 1200px) {
+      font-size: 18px;
+}
+@media (width < 576px) {
+      font-size: 14px;
+}
+@media (width < 425px) {
+      font-size: 12px;
+}
   }
 
   h4 {
@@ -153,6 +148,15 @@ const item = computed(() => store.product as Product);
     text-transform: uppercase;
     font-weight: 500;
     font-size: 15px;
+    @media (width < 1200px) {
+      font-size: 12px;
+}
+@media (width < 576px) {
+      font-size: 10px;
+}
+@media (width < 425px) {
+      font-size: 8px;
+}
   }
 
   p {

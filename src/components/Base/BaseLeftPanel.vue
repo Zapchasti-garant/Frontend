@@ -19,9 +19,9 @@ provide("itemsBottom", itemsBottom);
 const bottomClass = "top-panel";
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .custom__left-panel {
-  @media (width < 1024px) {
+  @media (width < 1025px) {
     display: none;
   }
 }

@@ -51,7 +51,7 @@ const route = useRoute();
     min-height: 70px;
     text-align: center;
 
-    @media (width < 1024px) {
+    @media (width < 1025px) {
       min-height: 50px;
     }
   }
@@ -64,11 +64,14 @@ const route = useRoute();
     color: aliceblue;
     transition: color 0.3s ease-in-out;
 
-    @media (width < 1024px) {
+    @media (width < 1025px) {
       font-weight: 400;
       font-size: 14px;
     }
-
+    @media  (width < 576px) {
+      font-size: 12px;
+  }
+  
     &::after {
       content: "";
       position: absolute;
