@@ -1,4 +1,5 @@
 import vue from "@vitejs/plugin-vue";
+import autoprefixer from 'autoprefixer';
 import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
@@ -13,6 +14,13 @@ export default defineConfig({
       autoImport: true,
     }),
   ],
+  css: {
+    postcss: {
+      plugins: [
+        autoprefixer(),
+      ],
+    },
+  },
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
