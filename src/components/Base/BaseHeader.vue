@@ -20,7 +20,6 @@
                 <a href="mailto:pjs-bryansk@yandex.ru" class="header__link">
                   <IconMail /> pjs-bryansk@yandex.ru</a
                 >
-                <img src="" alt="" />
               </li>
               <li class="header__item">
                 <a href="tel:+74832599242" class="header__link"
@@ -157,6 +156,9 @@ const getList = async () => {
      width: 80px;
      height: 80px;
     }
+    @media (width < 576px) {
+     display: none;
+    }
   }
   &__logo {
     position: relative;
@@ -216,9 +218,12 @@ const getList = async () => {
     &:focus {
       outline: 1px solid #01304d;
     }
+    @media (width < 576px) {
+      padding: 10px 0 10px 10px;
+      font-size: 14px;
+    }
   }
   
-
   &__form-btn {
     background: #d4d5d5;
     padding: 10px 30px;
@@ -244,6 +249,9 @@ const getList = async () => {
       background: #01304d;
       color: #fff;
     }
+    @media (width < 576px) {
+      font-size: 14px;
+    }
   }
   &__logotype {
   grid-row: 1 / 3;
@@ -252,10 +260,11 @@ const getList = async () => {
 }
 &__wrapper-contacts {
   display: flex;
-  justify-content: center;
+  justify-content: start;
+  margin-bottom: 20px;
+  }
 }
 
-}
 .header__item svg {
   width: 20px;
   height: 20px;
@@ -292,6 +301,12 @@ const getList = async () => {
       grid-template-areas:
     "logo nav nav"
     "logo nav nav"
+    "form form form";
+    }
+    @media (width < 576px) {
+      grid-template-rows: repeat(1, 1fr);
+      grid-template-areas:
+    "nav nav nav"
     "form form form";
     }
 }
@@ -355,6 +370,10 @@ const getList = async () => {
     @media (width < 768px) {
      flex-wrap: wrap;
      justify-content: end;
+     gap: 5px;
+    }
+    @media (width < 576px) {
+     flex-direction: column;
      gap: 5px;
     }
 }
