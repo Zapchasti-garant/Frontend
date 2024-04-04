@@ -26,7 +26,7 @@
 import IconAboutlogo from "@/ui/Icon/IconAboutlogo.vue";
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .about__wrapper {
   padding-bottom: 50px;
   display: flex;
@@ -36,7 +36,7 @@ import IconAboutlogo from "@/ui/Icon/IconAboutlogo.vue";
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80%;
+  width: 100%;
 }
 
 .about__text {
