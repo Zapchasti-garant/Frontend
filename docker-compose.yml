@@ -6,3 +6,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - "80:80"
+    networks:
+      - api-net
+networks:
+  api-net:
+    name: api-net
+    driver: bridge
+    external: true
