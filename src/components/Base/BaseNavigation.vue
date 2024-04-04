@@ -1,5 +1,5 @@
 <template>
-  <div class="navigation">
+  <section class="navigation">
     <div class="container">
       <aside>
         <nav class="navigation__nav">
@@ -18,7 +18,7 @@
         </nav>
       </aside>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
@@ -29,7 +29,12 @@ const route = useRoute();
 
 <style scoped lang="scss">
 .navigation {
+  overflow-x: auto;
   background-color: #023859;
+
+  @media (max-width: 1024px) {
+    // display: none;
+  }
   &__list {
     display: flex;
     align-items: center;
@@ -45,16 +50,28 @@ const route = useRoute();
     align-items: center;
     min-height: 70px;
     text-align: center;
+
+    @media (width < 1025px) {
+      min-height: 50px;
+    }
   }
   &__link {
     position: relative;
     text-align: center;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 18px;
     color: aliceblue;
     transition: color 0.3s ease-in-out;
 
+    @media (width < 1025px) {
+      font-weight: 400;
+      font-size: 14px;
+    }
+    @media  (width < 576px) {
+      font-size: 12px;
+  }
+  
     &::after {
       content: "";
       position: absolute;

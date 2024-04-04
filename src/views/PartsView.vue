@@ -31,8 +31,6 @@ onMounted(async () => {
     console.log(listData.value);
   }
 });
-
-
 </script>
 
 <style scoped></style>

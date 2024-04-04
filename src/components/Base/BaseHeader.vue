@@ -2,18 +2,24 @@
   <header class="header">
     <div class="container">
       <div class="header__wrapper">
+        <div class="header__logotype">
         <router-link class="header__logo" to="/" tabindex="0">
-          <IconAboutlogo :width="120" :height="120" class="header__img" />
-          <span tabindex="-1">"Промжелснаб"</span></router-link
+          <IconLogo
+            :width="120"
+            :height="120"
+            class="header__img"
+            style="grid-area: logo"
+          />
+          <span tabindex="-1">Промжелснаб</span></router-link
         >
-        <div class="header__wrapper-contacts">
+      </div>
+        <div class="header__wrapper-contacts" style="grid-area: nav">
           <nav class="header__nav">
             <ul class="header__list list-reset">
               <li class="header__item">
                 <a href="mailto:pjs-bryansk@yandex.ru" class="header__link">
                   <IconMail /> pjs-bryansk@yandex.ru</a
                 >
-                <img src="" alt="" />
               </li>
               <li class="header__item">
                 <a href="tel:+74832599242" class="header__link"
@@ -32,34 +38,38 @@
               </li>
             </ul>
           </nav>
-          <form class="header__form" @submit.prevent="goToPageSearch">
-            <div class="header__input-wrapper" tabindex="-1">
-              <input
-                type="text"
-                class="header__form-input"
-                v-model="inputValue"
-                @input="getList"
-                aria-label="input"
-                placeholder="Поиск по названию"
-              />
-              <HomeSearch
-                class="header__list-search"
-                tabindex="0"
-                @submit-form="goToPageSearch"
-                @click-product="clearInput"
-              />
-            </div>
-
-            <button
-              :disabled="inputValue.length < 2"
-              class="header__form-btn"
-              type="submit"
-              @click.prevent="goToPageSearch"
-            >
-              Поиск
-            </button>
-          </form>
         </div>
+        <form
+          class="header__form"
+          @submit.prevent="goToPageSearch"
+          style="grid-area: form"
+        >
+          <div class="header__input-wrapper" tabindex="-1">
+            <input
+              type="text"
+              class="header__form-input"
+              v-model="inputValue"
+              @input="getList"
+              aria-label="input"
+              placeholder="Поиск по названию"
+            />
+            <HomeSearch
+              class="header__list-search"
+              tabindex="0"
+              @submit-form="goToPageSearch"
+              @click-product="clearInput"
+            />
+          </div>
+
+          <button
+            :disabled="inputValue.length < 2"
+            class="header__form-btn"
+            type="submit"
+            @click.prevent="goToPageSearch"
+          >
+            Поиск
+          </button>
+        </form>
       </div>
     </div>
   </header>
@@ -68,7 +78,7 @@
 <script setup lang="ts">
 import HomeSearch from "@/components/Home/HomeSearch.vue";
 import { useStore } from "@/store/store.ts";
-import IconAboutlogo from "@/ui/Icon/IconAboutlogo.vue";
+import IconLogo from "@/ui/Icon/IconLogo.vue";
 import IconMail from "@/ui/Icon/IconMail.vue";
 import IconPhone from "@/ui/Icon/IconPhone.vue";
 import { ref, watch } from "vue";
@@ -116,7 +126,8 @@ const getList = async () => {
 </script>
 
 <style scoped lang="scss">
-.header {
+.header
+{
   &__input-wrapper {
     width: 100%;
     position: relative;
@@ -134,15 +145,26 @@ const getList = async () => {
     display: flex;
     gap: 10px;
     align-items: stretch;
+    @media (width < 1105px) {
+      grid-row: 3 /4 ;
+      
+    }
   }
   &__img {
-    translate: 0 -10px;
-    margin-left: 27%;
+    translate: 0 10px;
+    @media (width < 768px) {
+      display: none;
+    }
+    @media (width < 576px) {
+     display: none;
+    }
   }
   &__logo {
     position: relative;
     display: block;
     text-decoration: none;
+
+
     &:focus-visible {
       outline: none;
 
@@ -153,12 +175,12 @@ const getList = async () => {
 
     & span {
       position: absolute;
-      bottom: -7px;
-      left: 20px;
+      bottom: 17px;
+      left: 120px;
       display: block;
       font-size: 22px;
       font-weight: 600;
-      color: #01304d;
+      color: #000000;
 
       &::after {
         content: "";
@@ -170,9 +192,21 @@ const getList = async () => {
         background: #01304d;
         transition: width 0.3s ease-in-out;
       }
+      
+      @media (width < 1434px) {
+      font-size: 16px;
     }
+   
+    @media (width < 768px) {
+      font-size: 12px;
+      bottom: 18px;
+      left: 90px;
+    }
+    }
+   
   }
   &__form-input {
+    height: 100%;
     background: #d4d5d5;
     border-radius: 5px;
     border: none;
@@ -186,8 +220,17 @@ const getList = async () => {
     &:focus {
       outline: 1px solid #01304d;
     }
+    @media (width < 1025px) {
+      font-size: 20px;
+    }
+    @media (width < 576px) {
+      font-size: 18px;
+    }
+    @media (width < 576px) {
+      font-size: 14px;
+    }
   }
-
+  
   &__form-btn {
     background: #d4d5d5;
     padding: 10px 30px;
@@ -213,8 +256,31 @@ const getList = async () => {
       background: #01304d;
       color: #fff;
     }
+    @media (width < 1025px) {
+      font-size: 16px;
+    }
+    @media (width < 576px) {
+      font-size: 14px;
+    }
   }
+  &__logotype {
+  grid-row: 1 / 3;
+  grid-column: 1 / 2;
+  
 }
+&__wrapper-contacts {
+  display: flex;
+  justify-content: start;
+  margin-bottom: 20px;
+@media (width < 768px) {
+  justify-content: center;
+}  
+@media (width < 576px) {
+  justify-content: start;
+}  
+}
+}
+
 .header__item svg {
   width: 20px;
   height: 20px;
@@ -228,9 +294,39 @@ const getList = async () => {
 
 .header__wrapper {
   padding-top: 20px;
-  display: flex;
-  justify-content: space-between;
+  padding-bottom: 10px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas:
+    "logo nav nav"
+    "logo form form";
+
+    @media (width < 1434px) {
+      grid-template-columns: 1fr 3fr;
+      column-gap: 20px;
+    }
+    @media (width < 1105px) {
+      grid-template-rows: repeat(3, 3fr);
+      grid-template-areas:
+    "logo nav nav"
+    "logo nav nav"
+    "form form form";
+    }
+    @media (width < 768px) {
+      grid-template-rows: repeat(1, 2fr);
+      grid-template-areas:
+    "nav nav nav"
+    "nav nav nav"
+    "form form form";
+    }
+    @media (width < 576px) {
+      grid-template-rows: repeat(1, 1fr);
+      grid-template-areas:
+    "nav nav nav"
+    "form form form";
+    }
 }
+
 
 .header__link {
   display: flex;
@@ -270,11 +366,32 @@ const getList = async () => {
   &:active:not(:focus-visible) {
     transform: scale(0.96);
   }
+  @media (width < 1434px) {
+  gap: 2px;
+  font-size: 16px;
+    }
+    @media (width < 1025px) {
+  font-size: 12px;
+    }
+  
 }
 
 .header__list {
   display: flex;
   gap: 25px;
+  @media (width < 1105px) {
+     flex-wrap: wrap;
+     justify-content: end;
+    }
+    @media (width < 768px) {
+     flex-wrap: wrap;
+     justify-content: end;
+     gap: 5px;
+    }
+    @media (width < 576px) {
+     flex-direction: column;
+     gap: 5px;
+    }
 }
 
 .header__search {

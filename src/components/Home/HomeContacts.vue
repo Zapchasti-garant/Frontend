@@ -58,18 +58,31 @@
 
 <style scoped lang="scss">
 .table {
+  width: 100%;
   margin-bottom: 20px;
   border-collapse: collapse;
 
   td {
     border: 1px solid grey;
-    padding: 5px 50px;
+    padding: 5px 5px;
+  @media (width < 768px) {
+    font-size: 14px;
+  }
+  @media (width < 576px) {
+    font-size: 12px;
+  }
   }
 
   th {
-    padding: 5px 50px;
+    padding: 5px 5px;
     border: 1px solid grey;
     text-align: left;
+    @media (width < 768px) {
+    font-size: 14px;
+  }
+  @media (width < 576px) {
+    font-size: 12px;
+  }
   }
 }
 </style>

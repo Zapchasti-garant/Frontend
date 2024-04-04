@@ -25,5 +25,9 @@ import { images } from "../utils/menuItems.ts";
   background-repeat: no-repeat;
   background-position: center;
   background-image: url("/img/back-carousel.png");
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
 }
 </style>
