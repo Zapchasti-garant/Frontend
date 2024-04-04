@@ -43,5 +43,8 @@ import IconAboutlogo from "@/ui/Icon/IconAboutlogo.vue";
   font-size: 18px;
   font-weight: 600;
   color: #023859;
+  @media  (width < 768px) {
+    font-size: 14px;
+  }
 }
 </style>

@@ -29,6 +29,7 @@ const route = useRoute();
 
 <style scoped lang="scss">
 .navigation {
+  overflow-x: auto;
   background-color: #023859;
 
   @media (max-width: 1024px) {
