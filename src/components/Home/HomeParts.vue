@@ -7,10 +7,11 @@
         v-for="(item, idx) in props.listProducts"
         :key="idx"
         @click="goToViewProduct(item.id)"
-        
+
       >
         <v-img
           :key="idx"
+          
           height="200px"
           :src="item.img"
           contain
