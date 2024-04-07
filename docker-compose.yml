@@ -6,9 +6,9 @@ services:
       dockerfile: Dockerfile
     ports:
       - "80:80"
-    volumes: 
-      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
-      - ./index.html:/usr/share/nginx/html/index.html
+  #  volumes: 
+   #   - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+    #  - ./index.html:/usr/share/nginx/html/index.html
     networks:
       - api-net
 networks:
